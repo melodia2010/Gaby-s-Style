@@ -7,6 +7,7 @@
   
   <!-- Google Auth -->
   <meta name="google-signin-client_id" content="460424594977-cuo5kttqufdspj1vamu2dmo9tr9lpd5g.apps.googleusercontent.com">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
-    /* ESTILOS MEJORADOS Y COMPLETOS */
+    /* TODOS LOS ESTILOS ANTERIORES SE MANTIENEN IGUAL */
     * {
       margin: 0;
       padding: 0;
@@ -1042,6 +1043,18 @@
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
+    }
+
+    /* DIV PARA EL BOTÓN DE GOOGLE */
+    #googleSignInDiv {
+      width: 100%;
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .g_id_signin {
+      width: 100% !important;
     }
 
     /* RESPONSIVE */
@@ -2099,17 +2112,8 @@
           </div>
           <button type="submit" class="btn">Login</button>
           
-          <!-- BOTÓN DE GOOGLE -->
-          <button type="button" class="google-btn-custom" id="googleSignInBtn" onclick="handleGoogleSignIn()">
-            <div class="loading-spinner" id="googleLoadingSpinner"></div>
-            <svg class="google-icon" viewBox="0 0 24 24" width="20" height="20">
-              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-            </svg>
-            <span>Sign in with Google</span>
-          </button>
+          <!-- DIV PARA EL BOTÓN DE GOOGLE -->
+          <div id="googleSignInDiv"></div>
           
           <div class="login-register">
             <p>Don't have an account? <a href="#" class="register-link" onclick="showRegister()">Register</a></p>
@@ -2142,16 +2146,8 @@
           </div>
           <button type="submit" class="btn">Register</button>
           
-          <!-- BOTÓN DE GOOGLE PARA REGISTRO -->
-          <button type="button" class="google-btn-custom" onclick="handleGoogleSignIn()">
-            <svg class="google-icon" viewBox="0 0 24 24" width="20" height="20">
-              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-            </svg>
-            <span>Sign up with Google</span>
-          </button>
+          <!-- DIV PARA EL BOTÓN DE GOOGLE EN REGISTRO -->
+          <div id="googleSignInDivRegister"></div>
           
           <div class="login-register">
             <p>Already have an account? <a href="#" class="login-link" onclick="showLogin()">Login</a></p>
@@ -2462,36 +2458,63 @@
       showNotification(`¡Te has registrado exitosamente, ${name}!`);
     }
 
-    // GOOGLE AUTH FUNCTIONS - AHORA ES OPCIONAL
-    function handleGoogleSignIn() {
-      const googleSignInBtn = document.getElementById('googleSignInBtn');
-      const loadingSpinner = document.getElementById('googleLoadingSpinner');
+    // GOOGLE AUTH FUNCTIONS - USANDO LA API REAL DE GOOGLE
+    function initializeGoogleSignIn() {
+      // Inicializar el botón de Google para login
+      google.accounts.id.initialize({
+        client_id: "460424594977-cuo5kttqufdspj1vamu2dmo9tr9lpd5g.apps.googleusercontent.com",
+        callback: handleGoogleResponse
+      });
       
-      // Mostrar spinner de carga
-      googleSignInBtn.disabled = true;
-      loadingSpinner.style.display = 'block';
-      
-      // Simular autenticación con Google (en un entorno real usarías la API de Google)
-      setTimeout(() => {
-        // Datos simulados de Google - PERO AHORA PREGUNTAMOS AL USUARIO
-        const useGoogle = confirm("¿Quieres iniciar sesión con Google? Esto creará una cuenta nueva con tu email de Google.");
-        
-        if (useGoogle) {
-          const googleUser = {
-            name: 'Usuario Google',
-            email: 'usuario@gmail.com',
-            avatar: 'G'
-          };
-          
-          googleLogin(googleUser);
-        } else {
-          showNotification('Puedes registrarte con tu email y contraseña normales');
+      // Renderizar el botón de Google
+      google.accounts.id.renderButton(
+        document.getElementById("googleSignInDiv"),
+        { 
+          theme: "outline", 
+          size: "large",
+          width: "100%",
+          text: "signin_with",
+          locale: "es"
         }
-        
-        // Restaurar botón
-        googleSignInBtn.disabled = false;
-        loadingSpinner.style.display = 'none';
-      }, 1000);
+      );
+      
+      // Inicializar el botón de Google para registro
+      google.accounts.id.renderButton(
+        document.getElementById("googleSignInDivRegister"),
+        { 
+          theme: "outline", 
+          size: "large",
+          width: "100%",
+          text: "signup_with",
+          locale: "es"
+        }
+      );
+    }
+
+    function handleGoogleResponse(response) {
+      // Decodificar el token JWT
+      const responsePayload = decodeJWTResponse(response.credential);
+      
+      // Crear objeto de usuario de Google
+      const googleUser = {
+        name: responsePayload.name,
+        email: responsePayload.email,
+        avatar: responsePayload.name.charAt(0).toUpperCase(),
+        picture: responsePayload.picture
+      };
+      
+      // Procesar el login con Google
+      googleLogin(googleUser);
+    }
+
+    function decodeJWTResponse(token) {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      
+      return JSON.parse(jsonPayload);
     }
 
     function googleLogin(googleUser) {
@@ -2506,7 +2529,8 @@
           password: 'google_auth', // Contraseña especial para usuarios de Google
           phone: '',
           createdAt: new Date().toISOString(),
-          isGoogleUser: true
+          isGoogleUser: true,
+          picture: googleUser.picture
         };
         users.push(user);
         saveUsers(users);
@@ -2521,7 +2545,8 @@
         name: user.name,
         email: user.email,
         phone: user.phone || '',
-        avatar: googleUser.avatar
+        avatar: googleUser.avatar,
+        picture: user.picture
       };
       
       // Cargar datos del usuario
@@ -2978,6 +3003,14 @@
       // Verificar sesión recordada
       checkRememberedUser();
 
+      // Inicializar Google Sign-In cuando la API esté cargada
+      if (typeof google !== 'undefined') {
+        initializeGoogleSignIn();
+      } else {
+        // Si Google no está disponible, reintentar después de un tiempo
+        setTimeout(initializeGoogleSignIn, 1000);
+      }
+
       // Navegación del menú
       const navLinks = document.querySelectorAll('.navigation a[href^="#"]');
       navLinks.forEach(link => {
@@ -3131,3 +3164,4 @@ Estado: Pendiente de confirmación
   </script>
 </body>
 </html>
+
