@@ -15,6 +15,13 @@
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // INICIALIZAR EMAILJS CON TUS CREDENCIALES
+    emailjs.init("cV1a2nnO7ksij3b8B");
+  </script>
+  
   <style>
     /* TODOS LOS ESTILOS ANTERIORES SE MANTIENEN IGUAL */
     * {
@@ -2946,12 +2953,65 @@
       }
     }
 
-    // FUNCIÓN PARA ENVIAR EMAIL A GABY
-    function sendEmailToGaby(subject, body) {
-      const email = 'gabysstylellc24@gmail.com';
-      const emailBody = encodeURIComponent(body);
-      const emailSubject = encodeURIComponent(subject);
-      window.open(`mailto:${email}?subject=${emailSubject}&body=${emailBody}`);
+    // SISTEMA DE NOTIFICACIONES CON EMAILJS
+    function sendAppointmentNotifications(appointment) {
+      console.log('🔔 Enviando notificaciones...', appointment);
+      
+      // 1. WhatsApp (instantáneo)
+      sendWhatsAppNotification(appointment);
+      
+      // 2. Email automático (con EmailJS)
+      sendAutoEmail(appointment);
+    }
+
+    // WHATSAPP - Para notificación inmediata
+    function sendWhatsAppNotification(appointment) {
+      const phone = "13216626266";
+      const message = `📅 NUEVA CITA - GABY'S STYLE
+
+👤 CLIENTE:
+• Nombre: ${appointment.clientName}
+• Teléfono: ${appointment.clientPhone}
+• Email: ${appointment.clientEmail}
+
+💅 SERVICIO: ${appointment.service}
+📅 FECHA: ${appointment.date}
+⏰ HORA: ${appointment.time}
+📍 UBICACIÓN: ${appointment.location}
+
+${appointment.notes !== 'No hay notas especificadas' ? `📝 NOTAS: ${appointment.notes}` : ''}
+
+⚠️ PENDIENTE DE CONFIRMACIÓN`;
+
+      const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    }
+
+    // EMAIL AUTOMÁTICO - Con EmailJS (CON TUS CREDENCIALES COMPLETAS)
+    function sendAutoEmail(appointment) {
+      const templateParams = {
+        client_name: appointment.clientName,
+        client_email: appointment.clientEmail,
+        client_phone: appointment.clientPhone,
+        service: appointment.service,
+        date: appointment.date,
+        time: appointment.time,
+        location: appointment.location,
+        notes: appointment.notes,
+        to_email: 'gabysstylellc24@gmail.com'
+      };
+
+      console.log('📧 Enviando email automático...', templateParams);
+
+      // ENVÍO CON TUS CREDENCIALES COMPLETAS
+      emailjs.send('service_wmf78jq', 'template_eauk9ak', templateParams)
+          .then(function(response) {
+              console.log('✅ Email automático ENVIADO a Gaby:', response);
+              // No mostrar notificación para no molestar al usuario
+          }, function(error) {
+              console.error('❌ Error enviando email automático:', error);
+              // No mostrar error al usuario
+          });
     }
 
     // SISTEMA DE NOTIFICACIONES
@@ -3065,8 +3125,8 @@
         resetPassword();
       });
 
-      // Formulario de reservas
-      document.getElementById('reservationForm').addEventListener('submit', (e) => {
+      // Formulario de reservas - ACTUALIZADO CON EMAILJS
+      document.getElementById('reservationForm').addEventListener('submit', function(e) {
         e.preventDefault();
         if (!userLoggedIn) {
           showNotification('Debes iniciar sesión para reservar una cita.', 'error');
@@ -3087,7 +3147,7 @@
           clientName: document.getElementById('clientName').value,
           clientEmail: document.getElementById('clientEmail').value,
           clientPhone: document.getElementById('clientPhone').value,
-          notes: document.getElementById('notes').value
+          notes: document.getElementById('notes').value || 'No hay notas especificadas'
         };
         
         userAppointments.push(newAppointment);
@@ -3098,35 +3158,12 @@
           favorites: userFavorites
         });
         
-        // ENVIAR EMAIL A GABY
-        const emailSubject = `Nueva Cita Reservada - ${newAppointment.clientName}`;
-        const emailBody = `
-Nueva cita reservada en Gaby's Style:
-
-👤 CLIENTE:
-Nombre: ${newAppointment.clientName}
-Email: ${newAppointment.clientEmail}
-Teléfono: ${newAppointment.clientPhone}
-
-📅 CITA:
-Servicio: ${newAppointment.service}
-Fecha: ${newAppointment.date}
-Hora: ${newAppointment.time}
-Ubicación: ${newAppointment.location}
-
-📝 NOTAS:
-${newAppointment.notes || 'No hay notas especificadas'}
-
-Estado: Pendiente de confirmación
-
-¡Por favor contacta al cliente para confirmar la cita!
-        `;
+        // ENVIAR NOTIFICACIONES AUTOMÁTICAS (WhatsApp + Email)
+        sendAppointmentNotifications(newAppointment);
         
-        sendEmailToGaby(emailSubject, emailBody);
-        
-        showNotification('¡Cita reservada exitosamente! Te hemos enviado un email de confirmación.');
+        showNotification('¡Cita reservada exitosamente! 📅');
         closeReservationModal();
-        e.target.reset();
+        this.reset();
       });
 
       // Cerrar modales al hacer clic fuera
@@ -3164,4 +3201,3 @@ Estado: Pendiente de confirmación
   </script>
 </body>
 </html>
-
