@@ -2953,38 +2953,12 @@
       }
     }
 
-    // SISTEMA DE NOTIFICACIONES CON EMAILJS
+    // SISTEMA DE NOTIFICACIONES CON EMAILJS - SOLO EMAIL
     function sendAppointmentNotifications(appointment) {
-      console.log('🔔 Enviando notificaciones...', appointment);
+      console.log('🔔 Enviando notificaciones por email...', appointment);
       
-      // 1. WhatsApp (instantáneo)
-      sendWhatsAppNotification(appointment);
-      
-      // 2. Email automático (con EmailJS)
+      // Solo enviar email automático (con EmailJS)
       sendAutoEmail(appointment);
-    }
-
-    // WHATSAPP - Para notificación inmediata
-    function sendWhatsAppNotification(appointment) {
-      const phone = "13216626266";
-      const message = `📅 NUEVA CITA - GABY'S STYLE
-
-👤 CLIENTE:
-• Nombre: ${appointment.clientName}
-• Teléfono: ${appointment.clientPhone}
-• Email: ${appointment.clientEmail}
-
-💅 SERVICIO: ${appointment.service}
-📅 FECHA: ${appointment.date}
-⏰ HORA: ${appointment.time}
-📍 UBICACIÓN: ${appointment.location}
-
-${appointment.notes !== 'No hay notas especificadas' ? `📝 NOTAS: ${appointment.notes}` : ''}
-
-⚠️ PENDIENTE DE CONFIRMACIÓN`;
-
-      const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     }
 
     // EMAIL AUTOMÁTICO - Con EmailJS (CON TUS CREDENCIALES COMPLETAS)
@@ -3125,7 +3099,7 @@ ${appointment.notes !== 'No hay notas especificadas' ? `📝 NOTAS: ${appointmen
         resetPassword();
       });
 
-      // Formulario de reservas - ACTUALIZADO CON EMAILJS
+      // Formulario de reservas - ACTUALIZADO CON SOLO EMAIL
       document.getElementById('reservationForm').addEventListener('submit', function(e) {
         e.preventDefault();
         if (!userLoggedIn) {
@@ -3158,10 +3132,10 @@ ${appointment.notes !== 'No hay notas especificadas' ? `📝 NOTAS: ${appointmen
           favorites: userFavorites
         });
         
-        // ENVIAR NOTIFICACIONES AUTOMÁTICAS (WhatsApp + Email)
+        // ENVIAR NOTIFICACIONES SOLO POR EMAIL
         sendAppointmentNotifications(newAppointment);
         
-        showNotification('¡Cita reservada exitosamente! 📅');
+        showNotification('¡Cita reservada exitosamente! 📅 Se ha enviado un email de confirmación.');
         closeReservationModal();
         this.reset();
       });
