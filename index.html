@@ -23,7 +23,6 @@
   </script>
   
   <style>
-    /* TODOS LOS ESTILOS ANTERIORES SE MANTIENEN IGUAL */
     * {
       margin: 0;
       padding: 0;
@@ -112,7 +111,6 @@
       color: #fff;
     }
 
-    /* PERFIL DE USUARIO */
     .user-profile {
       display: none;
       align-items: center;
@@ -157,7 +155,6 @@
       color: #c2185b;
     }
 
-    /* MENÚ DESPLEGABLE DEL PERFIL */
     .profile-dropdown {
       position: absolute;
       top: 100%;
@@ -226,13 +223,11 @@
       background: #ffebee;
     }
 
-    /* SECCIONES PRINCIPALES */
     .section {
       padding: 120px 20px 100px;
       min-height: 100vh;
     }
 
-    /* HOME SECTION */
     #home {
       background: linear-gradient(rgba(233, 30, 99, 0.1), rgba(233, 30, 99, 0.05));
       display: flex;
@@ -271,7 +266,6 @@
       line-height: 1.6;
     }
 
-    /* GALERÍA DE FOTOS EN EL HOME */
     .beauty-gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -380,7 +374,6 @@
       }
     }
 
-    /* FONDOS DECORATIVOS */
     .floating-element {
       position: absolute;
       border-radius: 50%;
@@ -422,7 +415,6 @@
       }
     }
 
-    /* MODAL DE RESERVAS */
     .reservation-modal {
       position: fixed;
       top: 0;
@@ -562,7 +554,6 @@
       border-color: #e91e63;
     }
 
-    /* MODALES DE PERFIL, CITAS Y FAVORITOS */
     .profile-modal, .appointments-modal, .favorites-modal, .settings-modal {
       position: fixed;
       top: 0;
@@ -624,7 +615,6 @@
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
 
-    /* ESTILOS PARA CITAS - CON FUNCIONALIDAD DE CANCELACIÓN */
     .appointments-list {
       display: flex;
       flex-direction: column;
@@ -695,7 +685,6 @@
       font-size: 0.9em;
     }
 
-    /* FUNCIONALIDAD DE CANCELACIÓN */
     .appointment-actions {
       display: flex;
       gap: 10px;
@@ -786,7 +775,6 @@
       display: block;
     }
 
-    /* ESTILOS PARA FAVORITOS */
     .favorites-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -854,7 +842,6 @@
       color: white;
     }
 
-    /* BOTÓN DE FAVORITOS EN SERVICIOS */
     .favorite-btn {
       background: transparent;
       border: 2px solid #e91e63;
@@ -878,7 +865,6 @@
       color: white;
     }
 
-    /* ESTILOS PARA CONFIGURACIÓN */
     .settings-form {
       display: flex;
       flex-direction: column;
@@ -938,7 +924,6 @@
       color: white;
     }
 
-    /* NOTIFICACIÓN DE LOGIN REQUERIDO */
     .login-required {
       text-align: center;
       padding: 20px;
@@ -969,7 +954,6 @@
       background: #c2185b;
     }
 
-    /* NOTIFICACIONES */
     .notification {
       position: fixed;
       top: 100px;
@@ -1001,7 +985,6 @@
       }
     }
 
-    /* GOOGLE AUTH STYLES */
     .google-btn-custom {
       width: 100%;
       height: 50px;
@@ -1052,7 +1035,6 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* DIV PARA EL BOTÓN DE GOOGLE */
     #googleSignInDiv {
       width: 100%;
       margin-top: 10px;
@@ -1064,7 +1046,6 @@
       width: 100% !important;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 768px) {
       header {
         padding: 15px 20px;
@@ -1142,8 +1123,6 @@
       }
     }
 
-    /* EL RESTO DEL CSS SE MANTIENE IGUAL */
-    /* ABOUT SECTION */
     #about {
       background: linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%);
     }
@@ -1184,7 +1163,6 @@
       display: block;
     }
 
-    /* SERVICES SECTION */
     #services {
       background: white;
     }
@@ -1265,7 +1243,6 @@
       transform: translateY(-2px);
     }
 
-    /* REVIEWS SECTION CON FORMULARIO */
     #reviews {
       background: linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%);
     }
@@ -1340,7 +1317,6 @@
       font-style: italic;
     }
 
-    /* FORMULARIO PARA DEJAR REVIEW */
     .review-form-container {
       max-width: 600px;
       margin: 0 auto;
@@ -1430,7 +1406,6 @@
       box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
     }
 
-    /* CONTACT SECTION */
     #contact {
       background: white;
     }
@@ -1503,7 +1478,6 @@
       text-decoration: underline;
     }
 
-    /* MAPA */
     .map-container {
       border-radius: 20px;
       overflow: hidden;
@@ -1557,7 +1531,6 @@
       box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
     }
 
-    /* MODALES CON ESTILO ROSA PASTEL */
     .wrapper {
       position: fixed;
       top: 0;
@@ -2955,7 +2928,7 @@
 
     // SISTEMA DE NOTIFICACIONES CON EMAILJS - SOLO EMAIL
     function sendAppointmentNotifications(appointment) {
-      console.log('🔔 Sending notification by email...', appointment);
+      console.log('🔔 Enviando notificación por email...', appointment);
       
       // Solo enviar email automático (con EmailJS)
       sendAutoEmail(appointment);
@@ -2971,20 +2944,28 @@
         date: appointment.date,
         time: appointment.time,
         location: appointment.location,
-        notes: appointment.notes,
-        to_email: 'gabysstylellc24@gmail.com'
+        notes: appointment.notes || 'Sin notas adicionales',
+        to_email: 'gabysstylellc24@gmail.com',
+        from_name: 'Gaby\'s Style Booking System',
+        reply_to: appointment.clientEmail
       };
 
-      console.log('📧 Sending automatic email...', templateParams);
+      console.log('📧 Preparando envío de email...', templateParams);
 
       // ENVÍO CON TUS CREDENCIALES COMPLETAS
       emailjs.send('service_wmf78jq', 'template_eauk9ak', templateParams)
           .then(function(response) {
-              console.log('✅ Automatic email SENT to Gaby:', response);
-              // No mostrar notificación para no molestar al usuario
+              console.log('✅ Email automático ENVIADO a Gaby:', response);
+              console.log('📧 Status:', response.status);
+              console.log('📧 Text:', response.text);
+              
           }, function(error) {
-              console.error('❌ Error sending automatic email:', error);
-              // No mostrar error al usuario
+              console.error('❌ Error enviando email automático:', error);
+              console.error('📧 Error details:', {
+                status: error.status,
+                text: error.text,
+                message: error.message
+              });
           });
     }
 
@@ -3110,18 +3091,20 @@
         }
         
         const serviceText = document.getElementById('serviceSelect').options[document.getElementById('serviceSelect').selectedIndex].text;
+        const selectedLocation = document.querySelector('.location-option.selected');
+        
         const newAppointment = {
           id: Date.now(),
           service: serviceText,
           date: document.getElementById('appointmentDate').value,
           time: document.getElementById('appointmentTime').value,
-          location: document.querySelector('.location-option.selected') ? 
-                   document.querySelector('.location-option.selected').getAttribute('data-location') : 'No especificado',
+          location: selectedLocation ? selectedLocation.getAttribute('data-location') : 'No especificado',
           status: "pending",
           clientName: document.getElementById('clientName').value,
           clientEmail: document.getElementById('clientEmail').value,
           clientPhone: document.getElementById('clientPhone').value,
-          notes: document.getElementById('notes').value || 'No hay notas especificadas'
+          notes: document.getElementById('notes').value || 'No hay notas especificadas',
+          timestamp: new Date().toISOString()
         };
         
         userAppointments.push(newAppointment);
@@ -3176,4 +3159,6 @@
 </body>
 </html>
 
+
    
+
