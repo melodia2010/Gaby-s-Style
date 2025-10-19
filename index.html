@@ -5,22 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gaby's Style - Cejas, Pestañas & Labios</title>
   
-  <!-- Google Auth -->
-  <meta name="google-signin-client_id" content="460424594977-cuo5kttqufdspj1vamu2dmo9tr9lpd5g.apps.googleusercontent.com">
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script>
-    // INICIALIZAR EMAILJS CON TUS CREDENCIALES
-    emailjs.init("cV1a2nnO7ksij3b8B");
-  </script>
   
   <style>
     * {
@@ -482,9 +471,56 @@
       gap: 15px;
     }
 
-    .reservation-form .input-box {
-      margin: 15px 0;
+    .input-box {
+      position: relative;
+      width: 100%;
+      height: 55px;
+      border-bottom: 2px solid rgba(233, 30, 99, 0.3);
+      margin: 25px 0;
       background: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      padding: 0 15px;
+    }
+
+    .input-box label {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      font-size: 1em;
+      color: #e91e63;
+      font-weight: 500;
+      pointer-events: none;
+      transition: .5s;
+      background: transparent;
+      padding: 0 5px;
+    }
+
+    .input-box input:focus~label,
+    .input-box input:valid~label {
+      top: -5px;
+      color: #c2185b;
+      font-size: 0.9em;
+    }
+
+    .input-box input {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      color: #e91e63;
+      font-weight: 600;
+      padding: 0 35px 0 5px;
+    }
+
+    .input-box .icon {
+      position: absolute;
+      right: 15px;
+      font-size: 1.3em;
+      color: #e91e63;
+      line-height: 57px;
     }
 
     .reservation-form select {
@@ -985,67 +1021,29 @@
       }
     }
 
-    .google-btn-custom {
+    .btn {
       width: 100%;
       height: 50px;
-      background: white;
-      border: 2px solid #e91e63;
+      background: #e91e63;
+      border: none;
       outline: none;
       border-radius: 10px;
       cursor: pointer;
       font-size: 1.1em;
-      color: #e91e63;
+      color: #fff;
       font-weight: 600;
       transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
       margin-top: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
     }
 
-    .google-btn-custom:hover {
-      background: #f5f5f5;
+    .btn:hover {
+      background: #c2185b;
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(233, 30, 99, 0.2);
+      box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
     }
 
-    .google-btn-custom:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
-    .google-icon {
-      width: 20px;
-      height: 20px;
-    }
-
-    .loading-spinner {
-      display: none;
-      width: 20px;
-      height: 20px;
-      border: 2px solid #f3f3f3;
-      border-top: 2px solid #e91e63;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    #googleSignInDiv {
-      width: 100%;
-      margin-top: 10px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .g_id_signin {
-      width: 100% !important;
-    }
-
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       header {
         padding: 15px 20px;
@@ -1123,6 +1121,7 @@
       }
     }
 
+    /* ABOUT SECTION */
     #about {
       background: linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%);
     }
@@ -1163,6 +1162,7 @@
       display: block;
     }
 
+    /* SERVICES SECTION */
     #services {
       background: white;
     }
@@ -1243,6 +1243,7 @@
       transform: translateY(-2px);
     }
 
+    /* REVIEWS SECTION */
     #reviews {
       background: linear-gradient(135deg, #fff5f7 0%, #ffeef2 100%);
     }
@@ -1406,6 +1407,7 @@
       box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
     }
 
+    /* CONTACT SECTION */
     #contact {
       background: white;
     }
@@ -1531,6 +1533,7 @@
       box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
     }
 
+    /* LOGIN MODAL */
     .wrapper {
       position: fixed;
       top: 0;
@@ -1559,58 +1562,6 @@
       overflow: hidden;
     }
 
-    .wrapper.active .form-container {
-      height: 580px;
-    }
-
-    .wrapper.active-forgot .form-container {
-      height: 450px;
-    }
-
-    .form-box {
-      width: 100%;
-      padding: 40px;
-    }
-
-    .form-box.login {
-      transition: transform .18s ease;
-      transform: translateX(0);
-    }
-
-    .wrapper.active .form-box.login {
-      transition: none;
-      transform: translateX(-450px);
-    }
-
-    .wrapper.active-forgot .form-box.login {
-      transition: none;
-      transform: translateX(-450px);
-    }
-
-    .form-box.register {
-      position: absolute;
-      top: 0;
-      transition: none;
-      transform: translateX(450px);
-    }
-
-    .wrapper.active .form-box.register {
-      transition: transform .18s ease;
-      transform: translateX(0);
-    }
-
-    .form-box.forgot-password {
-      position: absolute;
-      top: 0;
-      transition: none;
-      transform: translateX(450px);
-    }
-
-    .wrapper.active-forgot .form-box.forgot-password {
-      transition: transform .18s ease;
-      transform: translateX(0);
-    }
-
     .icon-close {
       position: absolute;
       top: 0;
@@ -1633,64 +1584,17 @@
       background: #c2185b;
     }
 
+    .form-box {
+      width: 100%;
+      padding: 40px;
+    }
+
     .form-box h2 {
       font-size: 2.2em;
       color: #e91e63;
       text-align: center;
       margin-bottom: 30px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .input-box {
-      position: relative;
-      width: 100%;
-      height: 55px;
-      border-bottom: 2px solid rgba(233, 30, 99, 0.3);
-      margin: 25px 0;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 10px;
-      padding: 0 15px;
-    }
-
-    .input-box label {
-      position: absolute;
-      top: 50%;
-      left: 15px;
-      transform: translateY(-50%);
-      font-size: 1em;
-      color: #e91e63;
-      font-weight: 500;
-      pointer-events: none;
-      transition: .5s;
-      background: transparent;
-      padding: 0 5px;
-    }
-
-    .input-box input:focus~label,
-    .input-box input:valid~label {
-      top: -5px;
-      color: #c2185b;
-      font-size: 0.9em;
-    }
-
-    .input-box input {
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      border: none;
-      outline: none;
-      font-size: 1em;
-      color: #e91e63;
-      font-weight: 600;
-      padding: 0 35px 0 5px;
-    }
-
-    .input-box .icon {
-      position: absolute;
-      right: 15px;
-      font-size: 1.3em;
-      color: #e91e63;
-      line-height: 57px;
     }
 
     .remember-forgot {
@@ -1723,28 +1627,6 @@
     .remember-forgot a:hover {
       color: #c2185b;
       text-decoration: underline;
-    }
-
-    .btn {
-      width: 100%;
-      height: 50px;
-      background: #e91e63;
-      border: none;
-      outline: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1.1em;
-      color: #fff;
-      font-weight: 600;
-      transition: all 0.3s;
-      box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
-      margin-top: 10px;
-    }
-
-    .btn:hover {
-      background: #c2185b;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
     }
 
     .login-register {
@@ -1832,20 +1714,20 @@
     
     <div class="hero-content">
       <h1>𝒢𝒶𝒷𝓎'𝓈 𝒮𝓉𝓎𝓁𝑒</h1>
-      <p>Specialists in enhancing your natural beauty with professional eyebrow, eyelash, and lip services. Discover your best version with us..</p>
+      <p>Specialists in enhancing your natural beauty with professional eyebrow, eyelash, and lip services. Discover your best version with us.</p>
       
-      <!-- GALERÍA DE FOTOS CON TUS IMÁGENES DE PINTEREST -->
+      <!-- GALERÍA DE FOTOS -->
       <div class="beauty-gallery">
         <div class="gallery-item">
-          <img src="pestaña.jpeg" alt="Extensiones de pestañas volumen rusas">
+          <div style="background:#e91e63;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-size:2em;">👁️</div>
           <div class="gallery-label">Perfect eyelashes</div>
         </div>
         <div class="gallery-item">
-          <img src="ceja.jpeg" alt="Cejas perfectamente diseñadas">
+          <div style="background:#c2185b;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-size:2em;">✏️</div>
           <div class="gallery-label">Perfect Eyebrows</div>
         </div>
         <div class="gallery-item">
-          <img src="labios jugosos😍.jpeg" alt="Pestañas clásicas naturales">
+          <div style="background:#ad1457;height:100%;display:flex;align-items:center;justify-content:center;color:white;font-size:2em;">💋</div>
           <div class="gallery-label">Defined Lips</div>
         </div>
       </div>
@@ -1859,7 +1741,6 @@
     <div class="scroll-down" onclick="scrollToSection('about')">⬇️</div>
   </section>
 
-  <!-- EL RESTO DEL CÓDIGO SE MANTIENE IGUAL -->
   <section id="about">
     <div class="about-container">
       <div class="about-content">
@@ -1869,7 +1750,7 @@
         <p>We offer services both in our studio and at home in Orlando, FL.</p>
       </div>
       <div class="about-image">
-        <img src="Cat-Eye-Volume-MinuteLash_7ab1e65f-fcf7-4dd2-8128-c7203be3a3a2.837d15bdd47a3e7f19a8a5eaf2acc407.jpeg" alt="Ojos hermosos con maquillaje profesional">
+        <div style="background:#880e4f;height:500px;display:flex;align-items:center;justify-content:center;color:white;font-size:3em;">GABY'S STYLE</div>
       </div>
     </div>
   </section>
@@ -1901,7 +1782,7 @@
           <h3>Lip micropigmentation</h3>
           <p>Semi-permanent color that keeps your lips perfect all day</p>
           <div class="service-price">$250</div>
-          <button class="favorite-btn" onclick="toggleFavorite('labios', this)">❤️ Agregar a Favoritos</button>
+          <button class="favorite-btn" onclick="toggleFavorite('labios', this)">❤️ Add to Favorites</button>
           <button class="book-btn" onclick="openServiceReservation('labios')">book now</button>
         </div>
         
@@ -2092,9 +1973,6 @@
           </div>
           <button type="submit" class="btn">Login</button>
           
-          <!-- DIV PARA EL BOTÓN DE GOOGLE -->
-          <div id="googleSignInDiv"></div>
-          
           <div class="login-register">
             <p>Don't have an account? <a href="#" class="register-link" onclick="showRegister()">Register</a></p>
           </div>
@@ -2126,33 +2004,15 @@
           </div>
           <button type="submit" class="btn">Register</button>
           
-          <!-- DIV PARA EL BOTÓN DE GOOGLE EN REGISTRO -->
-          <div id="googleSignInDivRegister"></div>
-          
           <div class="login-register">
             <p>Already have an account? <a href="#" class="login-link" onclick="showLogin()">Login</a></p>
-          </div>
-        </form>
-      </div>
-
-      <div class="form-box forgot-password">
-        <h2>Reset Password</h2>
-        <form id="forgotPasswordForm">
-          <div class="input-box">
-            <span class="icon">📧</span>
-            <input type="email" id="forgotEmail" required>
-            <label>Email</label>
-          </div>
-          <button type="submit" class="btn">Send Reset Link</button>
-          <div class="login-register">
-            <p>Remember your password? <a href="#" class="login-link" onclick="showLogin()">Back to Login</a></p>
           </div>
         </form>
       </div>
     </div>
   </div>
 
-  <!-- MODAL DE RESERVAS MÁS COMPACTO -->
+  <!-- MODAL DE RESERVAS -->
   <div class="reservation-modal">
     <div class="reservation-content">
       <span class="close-reservation" onclick="closeReservationModal()">✖</span>
@@ -2250,7 +2110,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE CITAS - CON FUNCIONALIDAD DE CANCELACIÓN -->
+  <!-- MODAL DE CITAS -->
   <div class="appointments-modal">
     <div class="appointments-content">
       <span class="close-appointments" onclick="closeAppointmentsModal()">✖</span>
@@ -2310,7 +2170,7 @@
   </div>
 
   <script>
-    // SISTEMA DE AUTENTICACIÓN REAL
+    // SISTEMA DE AUTENTICACIÓN
     let userLoggedIn = false;
     let currentUser = null;
     let userAppointments = [];
@@ -2340,7 +2200,7 @@
       const rememberMe = document.getElementById('rememberMe').checked;
       
       if (!email || !password) {
-        showNotification('Por favor, completa todos los campos', 'error');
+        showNotification('Please complete all fields', 'error');
         return;
       }
 
@@ -2375,7 +2235,7 @@
         closeLoginModal();
         showNotification(`Welcome back, ${user.name}!`);
       } else {
-        showNotification('Correo electrónico o contraseña incorrectos', 'error');
+        showNotification('Incorrect email or password', 'error');
       }
     }
 
@@ -2438,126 +2298,6 @@
       showNotification(`You have successfully registered, ${name}!`);
     }
 
-    // GOOGLE AUTH FUNCTIONS - USANDO LA API REAL DE GOOGLE
-    function initializeGoogleSignIn() {
-      // Inicializar el botón de Google para login
-      google.accounts.id.initialize({
-        client_id: "460424594977-cuo5kttqufdspj1vamu2dmo9tr9lpd5g.apps.googleusercontent.com",
-        callback: handleGoogleResponse
-      });
-      
-      // Renderizar el botón de Google
-      google.accounts.id.renderButton(
-        document.getElementById("googleSignInDiv"),
-        { 
-          theme: "outline", 
-          size: "large",
-          width: "100%",
-          text: "signin_with",
-          locale: "es"
-        }
-      );
-      
-      // Inicializar el botón de Google para registro
-      google.accounts.id.renderButton(
-        document.getElementById("googleSignInDivRegister"),
-        { 
-          theme: "outline", 
-          size: "large",
-          width: "100%",
-          text: "signup_with",
-          locale: "es"
-        }
-      );
-    }
-
-    function handleGoogleResponse(response) {
-      // Decodificar el token JWT
-      const responsePayload = decodeJWTResponse(response.credential);
-      
-      // Crear objeto de usuario de Google
-      const googleUser = {
-        name: responsePayload.name,
-        email: responsePayload.email,
-        avatar: responsePayload.name.charAt(0).toUpperCase(),
-        picture: responsePayload.picture
-      };
-      
-      // Procesar el login con Google
-      googleLogin(googleUser);
-    }
-
-    function decodeJWTResponse(token) {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-      
-      return JSON.parse(jsonPayload);
-    }
-
-    function googleLogin(googleUser) {
-      const users = getUsers();
-      let user = users.find(u => u.email === googleUser.email);
-      
-      if (!user) {
-        // Crear nuevo usuario si no existe
-        user = {
-          name: googleUser.name,
-          email: googleUser.email,
-          password: 'google_auth', // Contraseña especial para usuarios de Google
-          phone: '',
-          createdAt: new Date().toISOString(),
-          isGoogleUser: true,
-          picture: googleUser.picture
-        };
-        users.push(user);
-        saveUsers(users);
-        
-        // Inicializar datos del usuario
-        saveUserData(googleUser.email, { appointments: [], favorites: [] });
-      }
-      
-      // Iniciar sesión
-      userLoggedIn = true;
-      currentUser = {
-        name: user.name,
-        email: user.email,
-        phone: user.phone || '',
-        avatar: googleUser.avatar,
-        picture: user.picture
-      };
-      
-      // Cargar datos del usuario
-      const userData = getUserData(user.email);
-      userAppointments = userData.appointments || [];
-      userFavorites = userData.favorites || [];
-      
-      updateUserInterface();
-      closeLoginModal();
-      showNotification(`¡Bienvenida, ${user.name}!`);
-    }
-
-    function resetPassword() {
-      const email = document.getElementById('forgotEmail').value;
-      
-      if (!email) {
-        showNotification('Por favor, ingresa tu email', 'error');
-        return;
-      }
-
-      const users = getUsers();
-      const user = users.find(u => u.email === email);
-      
-      if (user) {
-        showNotification(`Se ha enviado un enlace de recuperación a ${email}`);
-        showLogin();
-      } else {
-        showNotification('No existe una cuenta con este email', 'error');
-      }
-    }
-
     function logout() {
       // Guardar datos antes de cerrar sesión
       if (currentUser) {
@@ -2576,7 +2316,7 @@
       showNotification('Session closed successfully');
     }
 
-    // FUNCIONES PRINCIPALES (se mantienen igual)
+    // FUNCIONES PRINCIPALES
     function scrollToSection(sectionId) {
       document.getElementById(sectionId).scrollIntoView({ 
         behavior: 'smooth' 
@@ -2589,21 +2329,23 @@
     }
 
     function closeLoginModal() {
-      document.querySelector('.wrapper').classList.remove('active-popup', 'active', 'active-forgot');
+      document.querySelector('.wrapper').classList.remove('active-popup');
     }
 
     function showLogin() {
-      document.querySelector('.wrapper').classList.remove('active', 'active-forgot');
+      // Mostrar formulario de login
+      document.querySelector('.form-box.login').style.display = 'block';
+      document.querySelector('.form-box.register').style.display = 'none';
     }
 
     function showRegister() {
-      document.querySelector('.wrapper').classList.add('active');
-      document.querySelector('.wrapper').classList.remove('active-forgot');
+      // Mostrar formulario de registro
+      document.querySelector('.form-box.login').style.display = 'none';
+      document.querySelector('.form-box.register').style.display = 'block';
     }
 
     function showForgotPassword() {
-      document.querySelector('.wrapper').classList.add('active-forgot');
-      document.querySelector('.wrapper').classList.remove('active');
+      showNotification('Please contact support to reset your password');
     }
 
     function openReservationModal() {
@@ -2688,7 +2430,7 @@
 
     function openFavoritesModal() {
       if (!userLoggedIn) {
-        showNotification('Debes iniciar sesión para ver tus favoritos', 'error');
+        showNotification('You must log in to see your favorites', 'error');
         return;
       }
       document.querySelector('.favorites-modal').classList.add('active');
@@ -2723,9 +2465,9 @@
 
       const serviceData = {
         'microblading': { name: 'Microblading y Powder brows', price: '$200', icon: '✏️' },
-        'pestañas': { name: 'Extensiones de Pestañas', price: '$70', icon: '👁️' },
-        'labios': { name: 'Micropigmentación de Labios', price: '$250', icon: '🎨' },
-        'combo': { name: 'Combo Completo', price: '$400', icon: '💫' }
+        'pestañas': { name: 'Eyelash Extensions', price: '$70', icon: '👁️' },
+        'labios': { name: 'Lip Micropigmentation', price: '$250', icon: '🎨' },
+        'combo': { name: 'Full Combo', price: '$400', icon: '💫' }
       };
 
       const service = serviceData[serviceId];
@@ -2776,7 +2518,7 @@
             <div class="favorite-name">${favorite.name}</div>
             <div class="favorite-price">${favorite.price}</div>
           </div>
-          <button class="remove-favorite" onclick="removeFavorite('${favorite.id}')">Eliminar</button>
+          <button class="remove-favorite" onclick="removeFavorite('${favorite.id}')">Remove</button>
         </div>
       `).join('');
     }
@@ -2784,7 +2526,7 @@
     function removeFavorite(favoriteId) {
       userFavorites = userFavorites.filter(fav => fav.id !== favoriteId);
       loadFavorites();
-      showNotification('Servicio eliminado de favoritos');
+      showNotification('Service removed from favorites');
       saveUserData(currentUser.email, {
         appointments: userAppointments,
         favorites: userFavorites
@@ -2799,9 +2541,9 @@
         appointmentsList.innerHTML = `
           <div class="no-appointments">
             <i>📅</i>
-            <h3>No tienes citas programadas</h3>
-            <p>¡Reserva tu primera cita ahora!</p>
-            <button class="cta-btn" onclick="closeAppointmentsModal(); openReservationModal();" style="margin-top: 15px;">Reservar Cita</button>
+            <h3>No appointments scheduled</h3>
+            <p>Book your first appointment now!</p>
+            <button class="cta-btn" onclick="closeAppointmentsModal(); openReservationModal();" style="margin-top: 15px;">Book Appointment</button>
           </div>
         `;
         return;
@@ -2812,10 +2554,10 @@
           <div class="appointment-header">
             <div class="appointment-service">
               ${appointment.service}
-              ${appointment.status === 'cancelled' ? '<span class="cancelled-badge">Cancelada</span>' : ''}
+              ${appointment.status === 'cancelled' ? '<span class="cancelled-badge">Cancelled</span>' : ''}
             </div>
             <div class="appointment-status ${appointment.status === 'confirmed' ? 'status-confirmed' : appointment.status === 'pending' ? 'status-pending' : 'status-cancelled'}">
-              ${appointment.status === 'confirmed' ? 'Confirmada' : appointment.status === 'pending' ? 'Pendiente' : 'Cancelada'}
+              ${appointment.status === 'confirmed' ? 'Confirmed' : appointment.status === 'pending' ? 'Pending' : 'Cancelled'}
             </div>
           </div>
           <div class="appointment-details">
@@ -2834,26 +2576,11 @@
           </div>
           ${appointment.status !== 'cancelled' ? `
             <div class="appointment-actions">
-              <button class="cancel-btn" onclick="showCancelConfirmation(${appointment.id})">Cancel</button>
-            </div>
-            <div class="cancel-confirmation" id="cancelConfirmation${appointment.id}">
-              <p>Are you sure you want to cancel this appointment?</p>
-              <div class="confirmation-buttons">
-                <button class="confirm-cancel" onclick="cancelAppointment(${appointment.id})">Yes, Cancel</button>
-                <button class="cancel-cancel" onclick="hideCancelConfirmation(${appointment.id})">No, Keep</button>
-              </div>
+              <button class="cancel-btn" onclick="cancelAppointment(${appointment.id})">Cancel</button>
             </div>
           ` : ''}
         </div>
       `).join('');
-    }
-
-    function showCancelConfirmation(appointmentId) {
-      document.getElementById(`cancelConfirmation${appointmentId}`).style.display = 'block';
-    }
-
-    function hideCancelConfirmation(appointmentId) {
-      document.getElementById(`cancelConfirmation${appointmentId}`).style.display = 'none';
     }
 
     function cancelAppointment(appointmentId) {
@@ -2904,7 +2631,7 @@
 
     function formatDate(dateString) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(dateString).toLocaleDateString('es-ES', options);
+      return new Date(dateString).toLocaleDateString('en-US', options);
     }
 
     function updateUserInterface() {
@@ -2924,49 +2651,6 @@
         userProfile.style.display = 'none';
         loginBtn.style.display = 'block';
       }
-    }
-
-    // SISTEMA DE NOTIFICACIONES CON EMAILJS - SOLO EMAIL
-    function sendAppointmentNotifications(appointment) {
-      console.log('🔔 Enviando notificación por email...', appointment);
-      
-      // Solo enviar email automático (con EmailJS)
-      sendAutoEmail(appointment);
-    }
-
-    // EMAIL AUTOMÁTICO - Con EmailJS (CON TUS CREDENCIALES COMPLETAS)
-    function sendAutoEmail(appointment) {
-      const templateParams = {
-        client_name: appointment.clientName,
-        client_email: appointment.clientEmail,
-        client_phone: appointment.clientPhone,
-        service: appointment.service,
-        date: appointment.date,
-        time: appointment.time,
-        location: appointment.location,
-        notes: appointment.notes || 'Sin notas adicionales',
-        to_email: 'gabysstylellc24@gmail.com',
-        from_name: 'Gaby\'s Style Booking System',
-        reply_to: appointment.clientEmail
-      };
-
-      console.log('📧 Preparando envío de email...', templateParams);
-
-      // ENVÍO CON TUS CREDENCIALES COMPLETAS
-      emailjs.send('service_wmf78jq', 'template_eauk9ak', templateParams)
-          .then(function(response) {
-              console.log('✅ Email automático ENVIADO a Gaby:', response);
-              console.log('📧 Status:', response.status);
-              console.log('📧 Text:', response.text);
-              
-          }, function(error) {
-              console.error('❌ Error enviando email automático:', error);
-              console.error('📧 Error details:', {
-                status: error.status,
-                text: error.text,
-                message: error.message
-              });
-          });
     }
 
     // SISTEMA DE NOTIFICACIONES
@@ -3018,14 +2702,6 @@
       // Verificar sesión recordada
       checkRememberedUser();
 
-      // Inicializar Google Sign-In cuando la API esté cargada
-      if (typeof google !== 'undefined') {
-        initializeGoogleSignIn();
-      } else {
-        // Si Google no está disponible, reintentar después de un tiempo
-        setTimeout(initializeGoogleSignIn, 1000);
-      }
-
       // Navegación del menú
       const navLinks = document.querySelectorAll('.navigation a[href^="#"]');
       navLinks.forEach(link => {
@@ -3074,13 +2750,7 @@
         register();
       });
 
-      // Formulario de recuperación de contraseña
-      document.getElementById('forgotPasswordForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        resetPassword();
-      });
-
-      // Formulario de reservas - ACTUALIZADO CON SOLO EMAIL
+      // Formulario de reservas
       document.getElementById('reservationForm').addEventListener('submit', function(e) {
         e.preventDefault();
         if (!userLoggedIn) {
@@ -3098,12 +2768,12 @@
           service: serviceText,
           date: document.getElementById('appointmentDate').value,
           time: document.getElementById('appointmentTime').value,
-          location: selectedLocation ? selectedLocation.getAttribute('data-location') : 'No especificado',
+          location: selectedLocation ? selectedLocation.getAttribute('data-location') : 'Not specified',
           status: "pending",
           clientName: document.getElementById('clientName').value,
           clientEmail: document.getElementById('clientEmail').value,
           clientPhone: document.getElementById('clientPhone').value,
-          notes: document.getElementById('notes').value || 'No hay notas especificadas',
+          notes: document.getElementById('notes').value || 'No notes specified',
           timestamp: new Date().toISOString()
         };
         
@@ -3115,10 +2785,7 @@
           favorites: userFavorites
         });
         
-        // ENVIAR NOTIFICACIONES SOLO POR EMAIL
-        sendAppointmentNotifications(newAppointment);
-        
-        showNotification('Appointment successfully booked! 📅 A confirmation email has been sent.');
+        showNotification('Appointment successfully booked! We will contact you soon to confirm.');
         closeReservationModal();
         this.reset();
       });
@@ -3159,6 +2826,6 @@
 </body>
 </html>
 
-
    
+
 
