@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Gaby's Style - Cejas, Pestañas & Labios</title>
   
   <!-- Google Auth -->
@@ -23,7 +23,7 @@
   </script>
   
   <style>
-    /* TODOS LOS ESTILOS ANTERIORES SE MANTIENEN IGUAL */
+    /* ===== ESTILOS BASE PARA TODOS LOS DISPOSITIVOS ===== */
     * {
       margin: 0;
       padding: 0;
@@ -38,6 +38,7 @@
       scroll-behavior: smooth;
     }
 
+    /* ===== HEADER - RESPONSIVO ===== */
     header {
       position: fixed;
       top: 0;
@@ -60,6 +61,18 @@
       font-weight: 700;
     }
 
+    /* MENÚ HAMBURGUESA (oculto en desktop) */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      color: #e91e63;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 100;
+    }
+
     .navigation {
       display: flex;
       align-items: center;
@@ -72,6 +85,7 @@
       color: #e91e63;
       text-decoration: none;
       font-weight: 500;
+      padding: 5px 0;
     }
 
     .navigation a::after {
@@ -105,6 +119,7 @@
       color: #e91e63;
       font-weight: 500;
       transition: .5s;
+      min-height: 44px; /* Tamaño táctil mínimo */
     }
 
     .navigation .btnLogin-popup:hover {
@@ -135,6 +150,7 @@
       border: 2px solid #e91e63;
       cursor: pointer;
       transition: all 0.3s;
+      min-width: 45px; /* Tamaño mínimo en móvil */
     }
 
     .user-avatar:hover {
@@ -197,6 +213,7 @@
       text-decoration: none;
       transition: all 0.3s;
       cursor: pointer;
+      min-height: 44px; /* Tamaño táctil mínimo */
     }
 
     .dropdown-item:hover {
@@ -243,6 +260,7 @@
       position: relative;
       padding-top: 150px;
       overflow: hidden;
+      min-height: calc(100vh - 80px);
     }
 
     .hero-content {
@@ -251,10 +269,12 @@
       border-radius: 25px;
       backdrop-filter: blur(10px);
       max-width: 1200px;
+      width: 90%;
       box-shadow: 0 20px 40px rgba(233, 30, 99, 0.2);
       border: 1px solid rgba(233, 30, 99, 0.1);
       position: relative;
       z-index: 2;
+      margin: 0 auto;
     }
 
     .hero-content h1 {
@@ -340,6 +360,7 @@
       border: none;
       cursor: pointer;
       font-size: 1em;
+      min-height: 48px; /* Tamaño táctil */
     }
 
     .cta-btn:hover {
@@ -452,6 +473,7 @@
       box-shadow: 0 25px 50px rgba(233, 30, 99, 0.2);
       position: relative;
       border: 2px solid rgba(233, 30, 99, 0.2);
+      -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
     }
 
     .close-reservation {
@@ -470,6 +492,7 @@
       cursor: pointer;
       z-index: 1;
       transition: background 0.3s;
+      min-height: 44px; /* Tamaño táctil */
     }
 
     .close-reservation:hover {
@@ -505,6 +528,7 @@
       color: #e91e63;
       font-weight: 600;
       padding: 0 35px 0 15px;
+      font-size: 16px; /* Evita zoom en iOS */
     }
 
     .reservation-form textarea {
@@ -521,6 +545,7 @@
       resize: vertical;
       transition: all 0.3s;
       margin-top: 5px;
+      font-size: 16px; /* Evita zoom en iOS */
     }
 
     .reservation-form textarea:focus {
@@ -553,10 +578,64 @@
       cursor: pointer;
       transition: all 0.3s;
       font-size: 0.9em;
+      min-height: 44px; /* Tamaño táctil */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .location-option:hover,
     .location-option.selected {
+      background: #e91e63;
+      color: white;
+      border-color: #e91e63;
+    }
+
+    /* ESTILOS PARA OPCIONES DE SERVICIOS */
+    .service-options-container {
+      display: none;
+      background: #fff5f7;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px 0;
+      border: 1px solid rgba(233, 30, 99, 0.2);
+    }
+
+    .service-options-container.active {
+      display: block;
+    }
+
+    .service-options-title {
+      font-size: 1em;
+      color: #e91e63;
+      margin-bottom: 10px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .service-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .service-option {
+      padding: 10px;
+      background: white;
+      border: 2px solid rgba(233, 30, 99, 0.2);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      font-size: 0.9em;
+      min-height: 44px; /* Tamaño táctil */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-option:hover,
+    .service-option.selected {
       background: #e91e63;
       color: white;
       border-color: #e91e63;
@@ -592,6 +671,7 @@
       box-shadow: 0 25px 50px rgba(233, 30, 99, 0.2);
       position: relative;
       border: 2px solid rgba(233, 30, 99, 0.2);
+      -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
     }
 
     .close-profile, .close-appointments, .close-favorites, .close-settings {
@@ -610,6 +690,7 @@
       cursor: pointer;
       z-index: 1;
       transition: background 0.3s;
+      min-height: 44px; /* Tamaño táctil */
     }
 
     .close-profile:hover, .close-appointments:hover, .close-favorites:hover, .close-settings:hover {
@@ -712,6 +793,7 @@
       transition: all 0.3s;
       font-size: 0.8em;
       font-weight: 600;
+      min-height: 36px; /* Tamaño táctil */
     }
     
     .cancel-btn:hover {
@@ -747,6 +829,7 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
+      min-height: 36px; /* Tamaño táctil */
     }
     
     .cancel-cancel {
@@ -757,6 +840,7 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
+      min-height: 36px; /* Tamaño táctil */
     }
     
     .appointment-cancelled {
@@ -774,7 +858,7 @@
       margin-left: 10px;
     }
 
-    /* NUEVO BOTÓN PARA ELIMINAR CITAS CANCELADAS */
+    /* BOTÓN PARA ELIMINAR CITAS CANCELADAS */
     .delete-btn {
       background: transparent;
       border: 1px solid #666;
@@ -786,6 +870,7 @@
       font-size: 0.7em;
       font-weight: 600;
       margin-top: 10px;
+      min-height: 36px; /* Tamaño táctil */
     }
     
     .delete-btn:hover {
@@ -871,6 +956,7 @@
       cursor: pointer;
       transition: all 0.3s;
       font-size: 0.8em;
+      min-height: 36px; /* Tamaño táctil */
     }
 
     .remove-favorite:hover {
@@ -890,6 +976,7 @@
       transition: all 0.3s;
       margin-top: 15px;
       width: 100%;
+      min-height: 44px; /* Tamaño táctil */
     }
 
     .favorite-btn:hover {
@@ -939,6 +1026,7 @@
       cursor: pointer;
       font-weight: 600;
       transition: all 0.3s;
+      min-height: 44px; /* Tamaño táctil */
     }
 
     .save-btn:hover {
@@ -955,6 +1043,7 @@
       cursor: pointer;
       font-weight: 600;
       transition: all 0.3s;
+      min-height: 44px; /* Tamaño táctil */
     }
 
     .cancel-btn-settings:hover {
@@ -987,6 +1076,7 @@
       cursor: pointer;
       font-weight: 600;
       transition: all 0.3s;
+      min-height: 44px; /* Tamaño táctil */
     }
 
     .login-required-btn:hover {
@@ -1043,6 +1133,7 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
+      min-height: 50px; /* Tamaño táctil */
     }
 
     .google-btn-custom:hover {
@@ -1086,84 +1177,6 @@
 
     .g_id_signin {
       width: 100% !important;
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      header {
-        padding: 15px 20px;
-      }
-      
-      .navigation {
-        gap: 15px;
-        flex-wrap: wrap;
-      }
-      
-      .navigation a {
-        font-size: 0.9em;
-      }
-      
-      .hero-content h1 {
-        font-size: 2.5em;
-      }
-
-      .beauty-gallery {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-      
-      .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .reservation-content, .profile-content, .appointments-content, .favorites-content, .settings-content {
-        width: 95%;
-        margin: 20px;
-        padding: 20px;
-      }
-
-      .form-row {
-        flex-direction: column;
-      }
-
-      .location-options {
-        flex-direction: column;
-      }
-
-      .user-profile {
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
-      }
-
-      .user-info {
-        align-items: center;
-      }
-
-      .profile-dropdown {
-        right: -50px;
-        min-width: 180px;
-      }
-
-      .appointment-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .favorite-card {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .form-actions {
-        flex-direction: column;
-      }
-      
-      .confirmation-buttons {
-        flex-direction: column;
-      }
     }
 
     /* EL RESTO DEL CSS SE MANTIENE IGUAL */
@@ -1282,6 +1295,7 @@
       transition: all 0.3s;
       margin-top: 15px;
       width: 100%;
+      min-height: 44px; /* Tamaño táctil */
     }
 
     .book-btn:hover {
@@ -1407,6 +1421,7 @@
       font-size: 1em;
       transition: all 0.3s;
       background: #fff5f7;
+      font-size: 16px; /* Evita zoom en iOS */
     }
 
     .form-group input:focus,
@@ -1428,6 +1443,10 @@
       color: #ddd;
       cursor: pointer;
       transition: color 0.2s;
+      min-height: 44px; /* Tamaño táctil */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .star:hover,
@@ -1446,6 +1465,7 @@
       cursor: pointer;
       transition: all 0.3s;
       margin-top: 10px;
+      min-height: 48px; /* Tamaño táctil */
     }
 
     .submit-review:hover {
@@ -1678,6 +1698,7 @@
       cursor: pointer;
       z-index: 1;
       transition: background 0.3s;
+      min-height: 50px; /* Tamaño táctil */
     }
 
     .icon-close:hover {
@@ -1734,6 +1755,7 @@
       color: #e91e63;
       font-weight: 600;
       padding: 0 35px 0 5px;
+      font-size: 16px; /* Evita zoom en iOS */
     }
 
     .input-box .icon {
@@ -1790,6 +1812,7 @@
       transition: all 0.3s;
       box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
       margin-top: 10px;
+      min-height: 50px; /* Tamaño táctil */
     }
 
     .btn:hover {
@@ -1817,13 +1840,553 @@
       color: #c2185b;
       text-decoration: underline;
     }
+
+    /* ===== MEDIA QUERIES PARA RESPONSIVIDAD ===== */
+    
+    /* TABLETS GRANDES (1200px o menos) */
+    @media (max-width: 1200px) {
+      header {
+        padding: 20px 50px;
+      }
+      
+      .hero-content h1 {
+        font-size: 3em;
+      }
+      
+      .about-container {
+        gap: 40px;
+      }
+      
+      .about-image img {
+        height: 450px;
+      }
+    }
+
+    /* TABLETS (992px o menos) */
+    @media (max-width: 992px) {
+      header {
+        padding: 20px 30px;
+      }
+      
+      .logo {
+        font-size: 1.8em;
+      }
+      
+      .navigation {
+        gap: 20px;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.5em;
+      }
+      
+      .hero-content p {
+        font-size: 1.2em;
+      }
+      
+      .about-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+      
+      .about-image img {
+        height: 400px;
+      }
+      
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      .reviews-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      
+      .form-container {
+        width: 400px;
+      }
+    }
+
+    /* TABLETS Y MÓVILES GRANDES (768px o menos) */
+    @media (max-width: 768px) {
+      /* HEADER RESPONSIVO */
+      header {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+      }
+      
+      .logo {
+        font-size: 1.5em;
+        order: 1;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+        order: 2;
+        margin-left: auto;
+      }
+      
+      .navigation {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
+        display: none;
+        z-index: 98;
+        gap: 0;
+      }
+      
+      .navigation.active {
+        display: flex;
+      }
+      
+      .navigation a {
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(233, 30, 99, 0.1);
+        font-size: 1.1em;
+      }
+      
+      .navigation a:last-child {
+        border-bottom: none;
+      }
+      
+      .navigation a::after {
+        display: none; /* Ocultar subrayado animado en móvil */
+      }
+      
+      .user-profile {
+        order: 3;
+        flex-direction: row;
+        justify-content: center;
+        margin: 15px 0;
+        gap: 15px;
+        width: 100%;
+      }
+      
+      .user-info {
+        display: flex; /* Mostrar info en móvil */
+      }
+      
+      .btnLogin-popup {
+        width: 100%;
+        margin-top: 10px;
+      }
+      
+      /* HERO SECTION */
+      .section {
+        padding: 100px 20px 80px;
+      }
+      
+      #home {
+        padding-top: 120px;
+        min-height: calc(100vh - 70px);
+      }
+      
+      .hero-content {
+        padding: 40px 20px;
+        width: 95%;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.2em;
+        line-height: 1.3;
+      }
+      
+      .hero-content p {
+        font-size: 1.1em;
+        line-height: 1.5;
+      }
+      
+      .beauty-gallery {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        max-width: 400px;
+        margin: 30px auto;
+      }
+      
+      .gallery-item {
+        aspect-ratio: 4/3;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .cta-btn {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+      }
+      
+      .scroll-down {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+      }
+      
+      /* ABOUT SECTION */
+      .about-content h2,
+      .services-container h2,
+      .reviews-container h2,
+      .contact-container h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+      }
+      
+      .about-image img {
+        height: 350px;
+      }
+      
+      /* SERVICES SECTION */
+      .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+      
+      .service-card {
+        padding: 30px 20px;
+      }
+      
+      .service-icon {
+        font-size: 2.5em;
+      }
+      
+      .service-card h3 {
+        font-size: 1.3em;
+      }
+      
+      /* REVIEWS SECTION */
+      .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .review-card {
+        padding: 25px 20px;
+      }
+      
+      .review-form-container {
+        padding: 30px 20px;
+      }
+      
+      .stars-rating {
+        gap: 5px;
+      }
+      
+      .star {
+        font-size: 1.8em;
+      }
+      
+      /* CONTACT SECTION */
+      .contact-item {
+        padding: 15px;
+      }
+      
+      .map-container {
+        height: 300px;
+      }
+      
+      .social-links {
+        gap: 15px;
+      }
+      
+      .social-link {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3em;
+      }
+      
+      /* MODALES */
+      .form-container,
+      .reservation-content,
+      .profile-content,
+      .appointments-content,
+      .favorites-content,
+      .settings-content {
+        width: 95%;
+        margin: 10px;
+        padding: 25px 20px;
+        max-height: 90vh;
+      }
+      
+      .form-box {
+        padding: 30px 20px;
+      }
+      
+      .form-box h2 {
+        font-size: 1.8em;
+      }
+      
+      .input-box {
+        margin: 20px 0;
+        height: 50px;
+      }
+      
+      /* APPOINTMENTS Y FAVORITES */
+      .appointment-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .appointment-actions {
+        flex-direction: column;
+      }
+      
+      .cancel-btn,
+      .delete-btn,
+      .remove-favorite {
+        width: 100%;
+      }
+      
+      .confirmation-buttons {
+        flex-direction: column;
+      }
+      
+      .favorite-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+      
+      .favorite-icon {
+        margin: 0 auto;
+      }
+      
+      /* FORM ROWS EN MÓVIL */
+      .form-row {
+        flex-direction: column;
+      }
+      
+      .location-options {
+        flex-direction: column;
+      }
+      
+      .service-options {
+        grid-template-columns: 1fr;
+      }
+      
+      /* BOTONES */
+      .btn,
+      .submit-review,
+      .save-btn,
+      .cancel-btn-settings {
+        width: 100%;
+      }
+      
+      .form-actions {
+        flex-direction: column;
+      }
+      
+      /* PROFILE DROPDOWN EN MÓVIL */
+      .profile-dropdown {
+        right: -10px;
+        min-width: 180px;
+      }
+    }
+
+    /* MÓVILES PEQUEÑOS (576px o menos) */
+    @media (max-width: 576px) {
+      .section {
+        padding: 90px 15px 70px;
+      }
+      
+      #home {
+        padding-top: 100px;
+      }
+      
+      .hero-content h1 {
+        font-size: 1.8em;
+      }
+      
+      .hero-content p {
+        font-size: 1em;
+      }
+      
+      .beauty-gallery {
+        max-width: 100%;
+      }
+      
+      .about-content h2,
+      .services-container h2,
+      .reviews-container h2,
+      .contact-container h2 {
+        font-size: 1.8em;
+      }
+      
+      .about-image img {
+        height: 300px;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .review-form-container {
+        padding: 25px 15px;
+      }
+      
+      .contact-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      
+      .contact-icon {
+        margin: 0 auto;
+      }
+      
+      .map-container {
+        height: 250px;
+      }
+      
+      .form-container {
+        width: 95%;
+      }
+    }
+
+    /* MÓVILES MUY PEQUEÑOS (400px o menos) */
+    @media (max-width: 400px) {
+      header {
+        padding: 12px 15px;
+      }
+      
+      .logo {
+        font-size: 1.3em;
+      }
+      
+      .mobile-menu-btn {
+        font-size: 1.3em;
+        padding: 8px;
+      }
+      
+      .hero-content {
+        padding: 30px 15px;
+      }
+      
+      .hero-content h1 {
+        font-size: 1.6em;
+      }
+      
+      .gallery-label {
+        font-size: 1em;
+        padding: 15px 10px 10px;
+      }
+      
+      .form-container,
+      .reservation-content,
+      .profile-content,
+      .appointments-content,
+      .favorites-content,
+      .settings-content {
+        padding: 20px 15px;
+        margin: 5px;
+      }
+      
+      .form-box {
+        padding: 25px 15px;
+      }
+      
+      .form-box h2 {
+        font-size: 1.6em;
+      }
+    }
+
+    /* ORIENTACIÓN HORIZONTAL EN MÓVILES */
+    @media (max-height: 600px) and (orientation: landscape) {
+      #home {
+        min-height: auto;
+        padding: 100px 20px 60px;
+      }
+      
+      .hero-content {
+        padding: 30px 20px;
+      }
+      
+      .beauty-gallery {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 100%;
+      }
+      
+      .gallery-item {
+        aspect-ratio: 1/1;
+      }
+      
+      .navigation {
+        max-height: 70vh;
+        overflow-y: auto;
+      }
+      
+      .form-container,
+      .reservation-content {
+        max-height: 95vh;
+      }
+    }
+
+    /* DARK MODE SUPPORT */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: #1a1a1a;
+        color: #fff;
+      }
+      
+      header {
+        background: rgba(30, 30, 30, 0.98);
+      }
+      
+      .hero-content,
+      .service-card,
+      .review-card,
+      .contact-item,
+      .form-container,
+      .reservation-content,
+      .profile-content,
+      .appointments-content,
+      .favorites-content,
+      .settings-content {
+        background: #2a2a2a;
+        color: #fff;
+      }
+      
+      .input-box,
+      .input-box input,
+      .input-box select,
+      textarea,
+      .service-option,
+      .location-option {
+        background: #333;
+        color: #fff;
+      }
+      
+      .hero-content p,
+      .service-card p,
+      .review-text,
+      .contact-item p {
+        color: #ccc;
+      }
+    }
   </style>
 </head>
 <body>
 
   <header>
     <h2 class="logo">Gaby's Style</h2>
-    <nav class="navigation">
+    
+    <!-- Botón hamburguesa para móvil -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <nav class="navigation" id="mainNavigation">
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
@@ -1888,7 +2451,7 @@
       <!-- GALERÍA DE FOTOS CON TUS IMÁGENES DE PINTEREST -->
       <div class="beauty-gallery">
         <div class="gallery-item">
-          <img src="pestaña.jpeg" alt="Extensiones de pestañas volumen rusas">
+          <img src="pestana.jpeg" alt="Extensiones de pestañas volumen rusas">
           <div class="gallery-label">Perfect eyelashes</div>
         </div>
         <div class="gallery-item">
@@ -1896,7 +2459,7 @@
           <div class="gallery-label">Perfect Eyebrows</div>
         </div>
         <div class="gallery-item">
-          <img src="labios jugosos😍.jpeg" alt="Pestañas clásicas naturales">
+          <img src="labios_jugosos.jpeg" alt="Pestañas clásicas naturales">
           <div class="gallery-label">Defined Lips</div>
         </div>
       </div>
@@ -1910,17 +2473,16 @@
     <div class="scroll-down" onclick="scrollToSection('about')">⬇️</div>
   </section>
 
-  <!-- EL RESTO DEL CÓDIGO SE MANTIENE IGUAL -->
   <section id="about">
     <div class="about-container">
       <div class="about-content">
         <h2>About Us</h2>
         <p>In <strong>Gaby's Style</strong> we are dedicated to enhancing your natural beauty with professional techniques and the highest quality products. With years of experience in the aesthetics world, we specialize in creating personalized looks that adapt to your unique features.</p>
         <p>Our mission is to provide you with a unique experience where you feel comfortable, heard, and beautifully transformed. We believe that everyone deserves to feel secure and radiant.</p>
-        <p>We offer services both in our studio and at home in Orlando, FL.</p>
+        <p>We offer services in our studio in Orlando, FL.</p>
       </div>
-      <div class="about-image">
-        <img src="Cat-Eye-Volume-MinuteLash_7ab1e65f-fcf7-4dd2-8128-c7203be3a3a2.837d15bdd47a3e7f19a8a5eaf2acc407.jpeg" alt="Ojos hermosos con maquillaje profesional">
+        <div class="about-image">
+  <img src="about_image.jpeg" alt="Ojos hermosos con maquillaje profesional">
       </div>
     </div>
   </section>
@@ -1931,38 +2493,74 @@
       <div class="services-grid">
         <div class="service-card">
           <div class="service-icon">✏️</div>
-          <h3>Microblading y Powder brows</h3>
-          <p>Professional eyebrow shaping and design that naturally enhances your look</p>
-          <div class="service-price">$200</div>
-          <button class="favorite-btn" onclick="toggleFavorite('microblading', this)">❤️ Add to Favorites</button>
-          <button class="book-btn" onclick="openServiceReservation('microblading')">book now</button>
+          <h3>Eyebrows (Microblading / Powder Brows)</h3>
+          <p>Professional eyebrow shaping and design. New service or touch-up available.</p>
+          <div class="service-price">$80</div>
+          <button class="favorite-btn" onclick="toggleFavorite('eyebrows', this)">❤️ Add to Favorites</button>
+          <button class="book-btn" onclick="openServiceReservation('eyebrows')">book now</button>
         </div>
         
         <div class="service-card">
           <div class="service-icon">👁️</div>
-          <h3>Eyelash extensions</h3>
-          <p>Natural and elegant lashes that add length and definition</p>
-          <div class="service-price">$70</div>
-          <button class="favorite-btn" onclick="toggleFavorite('pestañas', this)">❤️ Add to Favorites</button>
-          <button class="book-btn" onclick="openServiceReservation('pestañas')">book now</button>
+          <h3>Eyelash Extensions</h3>
+          <p>Natural and elegant lashes that add length and definition. Choose from Volume, Mega Volume, Classic, or Refill</p>
+          <div class="service-price">From $100</div>
+          <button class="favorite-btn" onclick="toggleFavorite('eyelash_extensions', this)">❤️ Add to Favorites</button>
+          <button class="book-btn" onclick="openServiceReservation('eyelash_extensions')">book now</button>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">👁️</div>
+          <h3>Lash Lifting</h3>
+          <p>Professional lash lifting to enhance your natural lashes</p>
+          <div class="service-price">$80</div>
+          <button class="favorite-btn" onclick="toggleFavorite('lash_lifting', this)">❤️ Add to Favorites</button>
+          <button class="book-btn" onclick="openServiceReservation('lash_lifting')">book now</button>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">👁️</div>
+          <h3>Eyebrow Lifting</h3>
+          <p>Professional eyebrow lifting to enhance your natural brows</p>
+          <div class="service-price">$80</div>
+          <button class="favorite-btn" onclick="toggleFavorite('eyebrow_lifting', this)">❤️ Add to Favorites</button>
+          <button class="book-btn" onclick="openServiceReservation('eyebrow_lifting')">book now</button>
         </div>
         
         <div class="service-card">
           <div class="service-icon">🎨</div>
-          <h3>Lip micropigmentation</h3>
-          <p>Semi-permanent color that keeps your lips perfect all day</p>
-          <div class="service-price">$250</div>
-          <button class="favorite-btn" onclick="toggleFavorite('labios', this)">❤️ Agregar a Favoritos</button>
-          <button class="book-btn" onclick="openServiceReservation('labios')">book now</button>
+          <h3>Henna Brows</h3>
+          <p>Semi-permanent eyebrow tinting for natural looking brows</p>
+          <div class="service-price">$65</div>
+          <button class="favorite-btn" onclick="toggleFavorite('henna_brows', this)">❤️ Add to Favorites</button>
+          <button class="book-btn" onclick="openServiceReservation('henna_brows')">book now</button>
         </div>
         
         <div class="service-card">
-          <div class="service-icon">💫</div>
-          <h3>Full Combo</h3>
-          <p>Complete experience: eyebrows, eyelashes, and lips with a special discount</p>
-          <div class="service-price">$400</div>
-          <button class="favorite-btn" onclick="toggleFavorite('combo', this)">❤️ Add to Favorites</button>
-          <button class="book-btn" onclick="openServiceReservation('combo')">book now</button>
+          <div class="service-icon">💋</div>
+          <h3>Lip Micropigmentation</h3>
+          <p>Semi-permanent color that keeps your lips perfect all day. New service or touch-up available.</p>
+          <div class="service-price">$250</div>
+          <button class="favorite-btn" onclick="toggleFavorite('lip_micropigmentation', this)">❤️ Agregar a Favoritos</button>
+          <button class="book-btn" onclick="openServiceReservation('lip_micropigmentation')">book now</button>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">❌</div>
+          <h3>Tattoo Removal - Eyebrows</h3>
+          <p>Professional eyebrow tattoo removal services</p>
+          <div class="service-price">$250</div>
+          <button class="favorite-btn" onclick="toggleFavorite('eyebrow_tattoo_removal', this)">❤️ Add to Favorites</button>
+          <button class="book-btn" onclick="openServiceReservation('eyebrow_tattoo_removal')">book now</button>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">❌</div>
+          <h3>Tattoo Removal - Other Areas</h3>
+          <p>Professional tattoo removal services for other body areas (per session)</p>
+          <div class="service-price">Consult Price</div>
+          <button class="favorite-btn" onclick="toggleFavorite('tattoo_removal', this)">❤️ Add to Favorites</button>
+          <button class="book-btn" onclick="openServiceReservation('tattoo_removal')">book now</button>
         </div>
       </div>
     </div>
@@ -2003,8 +2601,10 @@
               <div class="review-stars">★★★★★</div>
             </div>
           </div>
-          <p class="review-text">"Excellent home service. Very punctual and professional. My lips turned out perfect with the tinting. 100% recommended."</p>
+          <p class="review-text">"Excellent service. Very punctual and professional. My lips turned out perfect with the tinting. 100% recommended."</p>
         </div>
+        <!-- Contenedor dinámico para reseñas guardadas -->
+        <div id="dynamicReviews"></div>
       </div>
 
       <!-- FORMULARIO PARA DEJAR REVIEW -->
@@ -2048,7 +2648,7 @@
             <div>
               <h3>Ubication</h3>
               <p>Orlando, FL</p>
-              <p>Service in studio and at home</p>
+              <p>Studio Services Only</p>
             </div>
           </div>
           
@@ -2097,7 +2697,7 @@
             </iframe>
           </div>
           <div class="map-notice">
-            🚗 In-home and clinic services in Orlando, FL
+            🏪 Studio services only in Orlando, FL
           </div>
         </div>
       </div>
@@ -2132,11 +2732,13 @@
             <input type="email" id="loginEmail" required>
             <label>Email</label>
           </div>
-          <div class="input-box">
+          <div class="input-box" style="position:relative;">
             <span class="icon">🔒</span>
             <input type="password" id="loginPassword" required>
+            <button type="button" id="toggleLoginPassword" aria-label="Mostrar contraseña" style="position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; cursor:pointer; font-size:1.1em;">👁️</button>
             <label>Password</label>
           </div>
+
           <div class="remember-forgot">
             <label><input type="checkbox" id="rememberMe"> Remember me</label>
             <a href="#" onclick="showForgotPassword()">Forgot Password?</a>
@@ -2233,13 +2835,10 @@
         </div>
         
         <div class="form-group">
-          <label>Location Preference</label>
+          <label>Service Location</label>
           <div class="location-options">
-            <div class="location-option" data-location="In Study" onclick="selectLocation(this)">
-              In Study
-            </div>
-            <div class="location-option" data-location="Home Delivery" onclick="selectLocation(this)">
-              Home Delivery
+            <div class="location-option" data-location="In Studio" onclick="selectLocation(this)">
+              In Studio
             </div>
           </div>
         </div>
@@ -2255,14 +2854,64 @@
           </div>
         </div>
         <div class="input-box">
-          <select required id="serviceSelect">
+          <select required id="serviceSelect" onchange="toggleServiceOptions()">
             <option value="">Select a Service</option>
-            <option value="microblading">Microblading y Powder brows - $200</option>
-            <option value="pestañas">Eyelash Extensions - $70</option>
-            <option value="labios">Lip Micropigmentation - $250</option>
-            <option value="combo">Full combo - $400</option>
+            <option value="eyebrows">Eyebrows (Microblading / Powder Brows) - $80</option>
+            <option value="eyelash_extensions">Eyelash Extensions - $100+</option>
+            <option value="lash_lifting">Lash Lifting - $80</option>
+            <option value="eyebrow_lifting">Eyebrow Lifting - $80</option>
+            <option value="henna_brows">Henna Brows - $65</option>
+            <option value="lip_micropigmentation">Lip Micropigmentation - $250</option>
+            <option value="eyebrow_tattoo_removal">Tattoo Removal - Eyebrows - $250</option>
+            <option value="tattoo_removal">Tattoo Removal - Other Areas - Consult Price</option>
           </select>
         </div>
+        
+        <!-- OPCIONES PARA EXTENSIONES DE PESTAÑAS -->
+        <div class="service-options-container" id="eyelashOptionsContainer">
+          <div class="service-options-title">Select Eyelash Extension Type</div>
+          <div class="service-options">
+            <div class="service-option" data-type="Volume" onclick="selectServiceOption(this)">
+              Volume
+            </div>
+            <div class="service-option" data-type="Mega Volume" onclick="selectServiceOption(this)">
+              Mega Volume
+            </div>
+            <div class="service-option" data-type="Classic" onclick="selectServiceOption(this)">
+              Classic
+            </div>
+            <div class="service-option" data-type="Refill" onclick="selectServiceOption(this)">
+              Refill
+            </div>
+          </div>
+        </div>
+        
+        <!-- OPCIONES PARA CEJAS -->
+        <div class="service-options-container" id="eyebrowsOptionsContainer">
+          <div class="service-options-title">Select Eyebrows Service Type</div>
+          <div class="service-options">
+            <div class="service-option" data-type="New Service" onclick="selectServiceOption(this)">
+              New Service
+            </div>
+            <div class="service-option" data-type="Touch-up" onclick="selectServiceOption(this)">
+              Touch-up
+            </div>
+          </div>
+        </div>
+        
+        <!-- OPCIONES PARA LABIOS -->
+        <div class="service-options-container" id="lipsOptionsContainer">
+          <div class="service-options-title">Select Lips Service Type</div>
+          <div class="service-options">
+            <div class="service-option" data-type="New Service" onclick="selectServiceOption(this)">
+              New Service
+            </div>
+            <div class="service-option" data-type="Touch-up" onclick="selectServiceOption(this)">
+              Touch-up
+            </div>
+          </div>
+        </div>
+        
         <div class="form-group">
           <label for="notes">Special Notes</label>
           <textarea id="notes" placeholder="Allergies, preferences, or special notes..." rows="3"></textarea>
@@ -2361,13 +3010,108 @@
   </div>
 
   <script>
-    // SISTEMA DE AUTENTICACIÓN REAL
+    // ===== FUNCIONALIDAD RESPONSIVA =====
+    
+    // Detectar dispositivo móvil
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    // Variables globales
     let userLoggedIn = false;
     let currentUser = null;
     let userAppointments = [];
     let userFavorites = [];
+    let selectedServiceOption = '';
 
-    // BASE DE DATOS DE USUARIOS (en localStorage)
+    // Menú hamburguesa
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainNavigation = document.getElementById('mainNavigation');
+    
+    if (mobileMenuBtn && mainNavigation) {
+      mobileMenuBtn.addEventListener('click', function() {
+        mainNavigation.classList.toggle('active');
+        this.innerHTML = mainNavigation.classList.contains('active') ? 
+          '<i class="fas fa-times"></i>' : 
+          '<i class="fas fa-bars"></i>';
+      });
+      
+      // Cerrar menú al hacer clic en un enlace
+      document.querySelectorAll('.navigation a').forEach(link => {
+        link.addEventListener('click', () => {
+          mainNavigation.classList.remove('active');
+          if (mobileMenuBtn) {
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+          }
+        });
+      });
+    }
+
+    // Ajustar altura del home en móvil
+    function adjustHomeHeight() {
+      if (isMobile) {
+        const homeSection = document.getElementById('home');
+        const windowHeight = window.innerHeight;
+        const headerHeight = document.querySelector('header').offsetHeight;
+        
+        if (homeSection) {
+          homeSection.style.minHeight = `${windowHeight - headerHeight}px`;
+        }
+      }
+    }
+    
+    // Ajustar al cargar y redimensionar
+    window.addEventListener('load', adjustHomeHeight);
+    window.addEventListener('resize', adjustHomeHeight);
+    
+    // Prevenir zoom en inputs de fecha/hora en iOS
+    if (isMobile) {
+      document.addEventListener('touchstart', function(e) {
+        if (e.target.type === 'date' || e.target.type === 'time') {
+          e.target.style.fontSize = '16px';
+        }
+      }, { passive: true });
+    }
+
+    // ===== FUNCIONES PARA MANEJAR OPCIONES DE SERVICIOS =====
+    function toggleServiceOptions() {
+      const serviceSelect = document.getElementById('serviceSelect');
+      const eyelashOptionsContainer = document.getElementById('eyelashOptionsContainer');
+      const eyebrowsOptionsContainer = document.getElementById('eyebrowsOptionsContainer');
+      const lipsOptionsContainer = document.getElementById('lipsOptionsContainer');
+      
+      // Ocultar todos los contenedores primero
+      eyelashOptionsContainer.classList.remove('active');
+      eyebrowsOptionsContainer.classList.remove('active');
+      lipsOptionsContainer.classList.remove('active');
+      
+      // Resetear selección previa
+      selectedServiceOption = '';
+      document.querySelectorAll('.service-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      
+      // Mostrar contenedores según el servicio seleccionado
+      if (serviceSelect.value === 'eyelash_extensions') {
+        eyelashOptionsContainer.classList.add('active');
+      } else if (serviceSelect.value === 'eyebrows') {
+        eyebrowsOptionsContainer.classList.add('active');
+      } else if (serviceSelect.value === 'lip_micropigmentation') {
+        lipsOptionsContainer.classList.add('active');
+      }
+    }
+
+    function selectServiceOption(element) {
+      // Deseleccionar todas las opciones del mismo contenedor
+      const container = element.closest('.service-options-container');
+      container.querySelectorAll('.service-option').forEach(option => {
+        option.classList.remove('selected');
+      });
+      
+      // Seleccionar la opción clickeada
+      element.classList.add('selected');
+      selectedServiceOption = element.getAttribute('data-type');
+    }
+
+    // ===== BASE DE DATOS DE USUARIOS =====
     function getUsers() {
       return JSON.parse(localStorage.getItem('gabysStyleUsers')) || [];
     }
@@ -2384,7 +3128,7 @@
       localStorage.setItem(`user_${email}`, JSON.stringify(data));
     }
 
-    // FUNCIONES DE AUTENTICACIÓN
+    // ===== FUNCIONES DE AUTENTICACIÓN =====
     function login() {
       const email = document.getElementById('loginEmail').value;
       const password = document.getElementById('loginPassword').value;
@@ -2489,8 +3233,13 @@
       showNotification(`You have successfully registered, ${name}!`);
     }
 
-    // GOOGLE AUTH FUNCTIONS - USANDO LA API REAL DE GOOGLE
+    // ===== GOOGLE AUTH FUNCTIONS =====
     function initializeGoogleSignIn() {
+      if (typeof google === 'undefined') {
+        setTimeout(initializeGoogleSignIn, 500);
+        return;
+      }
+      
       // Inicializar el botón de Google para login
       google.accounts.id.initialize({
         client_id: "460424594977-cuo5kttqufdspj1vamu2dmo9tr9lpd5g.apps.googleusercontent.com",
@@ -2498,28 +3247,32 @@
       });
       
       // Renderizar el botón de Google
-      google.accounts.id.renderButton(
-        document.getElementById("googleSignInDiv"),
-        { 
-          theme: "outline", 
-          size: "large",
-          width: "100%",
-          text: "signin_with",
-          locale: "es"
-        }
-      );
+      if (document.getElementById("googleSignInDiv")) {
+        google.accounts.id.renderButton(
+          document.getElementById("googleSignInDiv"),
+          { 
+            theme: "outline", 
+            size: "large",
+            width: "100%",
+            text: "signin_with",
+            locale: "es"
+          }
+        );
+      }
       
       // Inicializar el botón de Google para registro
-      google.accounts.id.renderButton(
-        document.getElementById("googleSignInDivRegister"),
-        { 
-          theme: "outline", 
-          size: "large",
-          width: "100%",
-          text: "signup_with",
-          locale: "es"
-        }
-      );
+      if (document.getElementById("googleSignInDivRegister")) {
+        google.accounts.id.renderButton(
+          document.getElementById("googleSignInDivRegister"),
+          { 
+            theme: "outline", 
+            size: "large",
+            width: "100%",
+            text: "signup_with",
+            locale: "es"
+          }
+        );
+      }
     }
 
     function handleGoogleResponse(response) {
@@ -2557,7 +3310,7 @@
         user = {
           name: googleUser.name,
           email: googleUser.email,
-          password: 'google_auth', // Contraseña especial para usuarios de Google
+          password: 'google_auth',
           phone: '',
           createdAt: new Date().toISOString(),
           isGoogleUser: true,
@@ -2592,7 +3345,7 @@
 
     function resetPassword() {
       const email = document.getElementById('forgotEmail').value;
-      
+
       if (!email) {
         showNotification('Por favor, ingresa tu email', 'error');
         return;
@@ -2601,16 +3354,102 @@
       const users = getUsers();
       const user = users.find(u => u.email === email);
       
-      if (user) {
-        showNotification(`Se ha enviado un enlace de recuperación a ${email}`);
-        showLogin();
-      } else {
+      if (!user) {
         showNotification('No existe una cuenta con este email', 'error');
+        return;
       }
+
+      // Generar token de 6 dígitos
+      const token = Math.floor(100000 + Math.random() * 900000).toString();
+      const expires = Date.now() + 15 * 60 * 1000;
+
+      // Guardar token localmente
+      localStorage.setItem(`pwd_reset_${email}`, JSON.stringify({ token, expires }));
+      localStorage.setItem(`pwd_reset_lastsent_${email}`, Date.now().toString());
+
+      // Enviar token por correo usando el backend
+      fetch('http://localhost:3000/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'reset', email, token })
+      }).then(res => {
+        if (res.ok) {
+          showNotification('Se ha enviado un código de verificación a tu correo. Revisa tu bandeja.');
+          showResetForm(email);
+        } else {
+          showNotification('Error al enviar el correo. Intenta de nuevo más tarde.', 'error');
+        }
+      }).catch(err => {
+        console.error('Error enviando reset:', err);
+        showNotification('No se pudo conectar con el servidor de correo.', 'error');
+      });
+    }
+
+    function showResetForm(email) {
+      const forgotBox = document.querySelector('.form-box.forgot-password');
+      if (!forgotBox) return;
+      forgotBox.innerHTML = `
+        <h2>Reset Password</h2>
+        <form id="resetConfirmForm">
+          <div class="input-box">
+            <span class="icon">🔢</span>
+            <input type="text" id="resetToken" required>
+            <label>Verification Code</label>
+          </div>
+          <div class="input-box">
+            <span class="icon">🔒</span>
+            <input type="password" id="newPassword" required>
+            <label>New Password</label>
+          </div>
+          <div class="input-box">
+            <span class="icon">🔒</span>
+            <input type="password" id="confirmNewPassword" required>
+            <label>Confirm New Password</label>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button type="submit" class="btn">Reset Password</button>
+            <button type="button" id="resendCodeBtn" class="btn" style="background:#fff;border:1px solid #e91e63;color:#e91e63;">Reenviar código</button>
+          </div>
+          <div style="margin-top:8px;display:flex;align-items:center;gap:8px;">
+            <input type="checkbox" id="devShowToken" />
+            <label for="devShowToken" style="font-size:12px;color:#666;">Mostrar token (solo para pruebas locales)</label>
+          </div>
+          <div id="devTokenDisplay" style="margin-top:8px;padding:8px;background:#f7f7f7;border:1px dashed #ccc;display:none;font-family:monospace;color:#333;">Token: <span id="devTokenValue">—</span></div>
+          <div class="login-register">
+            <p>Remember your password? <a href="#" class="login-link" onclick="showLogin()">Back to Login</a></p>
+          </div>
+        </form>
+      `;
+
+      const form = document.getElementById('resetConfirmForm');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const enteredToken = document.getElementById('resetToken').value.trim();
+        const newPwd = document.getElementById('newPassword').value;
+        const confirmPwd = document.getElementById('confirmNewPassword').value;
+
+        if (newPwd.length < 6) { showNotification('La contraseña debe tener al menos 6 caracteres', 'error'); return; }
+        if (newPwd !== confirmPwd) { showNotification('Las contraseñas no coinciden', 'error'); return; }
+
+        const stored = JSON.parse(localStorage.getItem(`pwd_reset_${email}`) || 'null');
+        if (!stored) { showNotification('No se encontró un código de verificación válido. Solicita uno nuevo.', 'error'); return; }
+        if (Date.now() > stored.expires) { showNotification('El código ha expirado. Solicita uno nuevo.', 'error'); return; }
+        if (stored.token !== enteredToken) { showNotification('Código de verificación incorrecto', 'error'); return; }
+
+        const users = getUsers();
+        const idx = users.findIndex(u => u.email === email);
+        if (idx === -1) { showNotification('Usuario no encontrado', 'error'); return; }
+        users[idx].password = newPwd;
+        saveUsers(users);
+
+        localStorage.removeItem(`pwd_reset_${email}`);
+
+        showNotification('Contraseña actualizada correctamente. Ya puedes iniciar sesión.');
+        showLogin();
+      });
     }
 
     function logout() {
-      // Guardar datos antes de cerrar sesión
       if (currentUser) {
         saveUserData(currentUser.email, {
           appointments: userAppointments,
@@ -2627,7 +3466,7 @@
       showNotification('Session closed successfully');
     }
 
-    // FUNCIONES PRINCIPALES (se mantienen igual)
+    // ===== FUNCIONES PRINCIPALES =====
     function scrollToSection(sectionId) {
       document.getElementById(sectionId).scrollIntoView({ 
         behavior: 'smooth' 
@@ -2671,6 +3510,15 @@
         document.getElementById('clientPhone').value = currentUser.phone || '';
       }
       document.querySelector('.reservation-modal').classList.add('active');
+      
+      // Resetear opciones de servicios
+      selectedServiceOption = '';
+      document.querySelectorAll('.service-options-container').forEach(container => {
+        container.classList.remove('active');
+      });
+      document.querySelectorAll('.service-option').forEach(option => {
+        option.classList.remove('selected');
+      });
     }
 
     function openServiceReservation(serviceType) {
@@ -2678,6 +3526,9 @@
       setTimeout(() => {
         const select = document.getElementById('serviceSelect');
         select.value = serviceType;
+        
+        // Mostrar opciones según el servicio
+        toggleServiceOptions();
       }, 100);
     }
 
@@ -2686,6 +3537,14 @@
       document.getElementById('reservationForm').reset();
       document.querySelectorAll('.location-option').forEach(opt => {
         opt.classList.remove('selected');
+      });
+      // Resetear opciones de servicios
+      selectedServiceOption = '';
+      document.querySelectorAll('.service-options-container').forEach(container => {
+        container.classList.remove('active');
+      });
+      document.querySelectorAll('.service-option').forEach(option => {
+        option.classList.remove('selected');
       });
     }
 
@@ -2696,7 +3555,7 @@
       element.classList.add('selected');
     }
 
-    // FUNCIONES DEL MENÚ DESPLEGABLE
+    // ===== FUNCIONES DEL MENÚ DESPLEGABLE =====
     function toggleProfileDropdown() {
       const dropdown = document.getElementById('profileDropdown');
       dropdown.classList.toggle('active');
@@ -2764,7 +3623,7 @@
       document.querySelector('.settings-modal').classList.remove('active');
     }
 
-    // FUNCIONES DE FAVORITOS
+    // ===== FUNCIONES DE FAVORITOS =====
     function toggleFavorite(serviceId, button) {
       if (!userLoggedIn) {
         showNotification('You must log in to add favorites', 'error');
@@ -2773,10 +3632,14 @@
       }
 
       const serviceData = {
-        'microblading': { name: 'Microblading y Powder brows', price: '$200', icon: '✏️' },
-        'pestañas': { name: 'Extensiones de Pestañas', price: '$70', icon: '👁️' },
-        'labios': { name: 'Micropigmentación de Labios', price: '$250', icon: '🎨' },
-        'combo': { name: 'Combo Completo', price: '$400', icon: '💫' }
+        'eyebrows': { name: 'Eyebrows (Microblading / Powder Brows)', price: '$80', icon: '✏️' },
+        'eyelash_extensions': { name: 'Eyelash Extensions', price: 'From $100', icon: '👁️' },
+        'lash_lifting': { name: 'Lash Lifting', price: '$80', icon: '👁️' },
+        'eyebrow_lifting': { name: 'Eyebrow Lifting', price: '$80', icon: '👁️' },
+        'henna_brows': { name: 'Henna Brows', price: '$65', icon: '🎨' },
+        'lip_micropigmentation': { name: 'Lip Micropigmentation', price: '$250', icon: '💋' },
+        'eyebrow_tattoo_removal': { name: 'Tattoo Removal - Eyebrows', price: '$250', icon: '❌' },
+        'tattoo_removal': { name: 'Tattoo Removal - Other Areas', price: 'Consult Price', icon: '❌' }
       };
 
       const service = serviceData[serviceId];
@@ -2842,7 +3705,7 @@
       });
     }
 
-    // FUNCIONES DE GESTIÓN DE CITAS - ACTUALIZADAS
+    // ===== FUNCIONES DE GESTIÓN DE CITAS =====
     function loadAppointments() {
       const appointmentsList = document.getElementById('appointmentsList');
       
@@ -2883,6 +3746,12 @@
               <i>📍</i>
               <span>${appointment.location}</span>
             </div>
+            ${appointment.serviceType ? `
+            <div class="appointment-detail">
+              <i>⚙️</i>
+              <span>Tipo: ${appointment.serviceType}</span>
+            </div>
+            ` : ''}
           </div>
           ${appointment.status !== 'cancelled' ? `
             <div class="appointment-actions">
@@ -2929,7 +3798,6 @@
       }
     }
 
-    // NUEVA FUNCIÓN PARA ELIMINAR CITAS CANCELADAS
     function deleteAppointment(appointmentId) {
       userAppointments = userAppointments.filter(apt => apt.id !== appointmentId);
       loadAppointments();
@@ -2996,7 +3864,7 @@
       }
     }
 
-    // SISTEMA DE NOTIFICACIONES CON EMAILJS - SOLO EMAIL
+    // ===== SISTEMA DE NOTIFICACIONES CON EMAILJS =====
     function sendAppointmentNotifications(appointment) {
       console.log('🔔 Enviando notificaciones por email...', appointment);
       
@@ -3007,7 +3875,7 @@
       sendConfirmationEmailToClient(appointment);
     }
 
-    // EMAIL A GABY - Con el nuevo template
+    // EMAIL A GABY
     function sendAppointmentEmailToGaby(appointment) {
       const templateParams = {
         client_name: appointment.clientName,
@@ -3020,12 +3888,12 @@
         notes: appointment.notes,
         appointment_id: appointment.id,
         user_email: currentUser.email,
-        to_email: 'gabysstylellc24@gmail.com'
+        to_email: 'gabysstylellc24@gmail.com',
+        service_type: appointment.serviceType || 'No especificado'
       };
 
       console.log('📧 Enviando email a Gaby...', templateParams);
 
-      // ENVÍO CON EL NUEVO TEMPLATE
       emailjs.send('service_wmf78jq', 'template_506avmk', templateParams)
           .then(function(response) {
               console.log('✅ Email enviado a Gaby:', response);
@@ -3043,10 +3911,10 @@
         time: appointment.time,
         location: appointment.location,
         notes: appointment.notes,
-        to_email: appointment.clientEmail
+        to_email: appointment.clientEmail,
+        service_type: appointment.serviceType || ''
       };
 
-      // Usar el template de confirmación para el cliente
       emailjs.send('service_wmf78jq', 'template_eauk9ak', templateParams)
           .then(function(response) {
               console.log('✅ Email de confirmación enviado al cliente:', response);
@@ -3065,7 +3933,6 @@
         to_email: appointment.clientEmail
       };
 
-      // Usar template para cancelación
       emailjs.send('service_wmf78jq', 'template_eauk9ak', templateParams)
           .then(function(response) {
               console.log('✅ Email de cancelación enviado:', response);
@@ -3074,38 +3941,6 @@
           });
     }
 
-    // SISTEMA PARA QUE GABY ACEPTE CITAS DESDE EL EMAIL
-    // Esta función simula la aceptación de una cita por parte de Gaby
-    function acceptAppointment(appointmentId, userEmail) {
-      // En un sistema real, esto se haría desde el backend
-      // Aquí simulamos la actualización en localStorage
-      
-      // Obtener datos del usuario
-      const userData = getUserData(userEmail);
-      if (!userData) return;
-      
-      // Buscar la cita y actualizar su estado
-      const appointmentIndex = userData.appointments.findIndex(apt => apt.id === appointmentId);
-      if (appointmentIndex !== -1) {
-        userData.appointments[appointmentIndex].status = 'confirmed';
-        saveUserData(userEmail, userData);
-        
-        // Si el usuario está logueado actualmente, actualizar la interfaz
-        if (currentUser && currentUser.email === userEmail) {
-          userAppointments = userData.appointments;
-          if (document.querySelector('.appointments-modal').classList.contains('active')) {
-            loadAppointments();
-          }
-        }
-        
-        // Enviar notificación al usuario
-        sendAppointmentAcceptedEmail(userData.appointments[appointmentIndex]);
-        
-        console.log(`✅ Cita ${appointmentId} aceptada para ${userEmail}`);
-      }
-    }
-
-    // EMAIL DE ACEPTACIÓN DE CITA AL USUARIO
     function sendAppointmentAcceptedEmail(appointment) {
       const templateParams = {
         client_name: appointment.clientName,
@@ -3116,7 +3951,6 @@
         to_email: appointment.clientEmail
       };
 
-      // Usar template para aceptación de cita
       emailjs.send('service_wmf78jq', 'template_eauk9ak', templateParams)
           .then(function(response) {
               console.log('✅ Email de aceptación enviado al cliente:', response);
@@ -3125,7 +3959,7 @@
           });
     }
 
-    // SISTEMA DE NOTIFICACIONES
+    // ===== SISTEMA DE NOTIFICACIONES =====
     function showNotification(message, type = 'success') {
       const notification = document.getElementById('notification');
       const notificationText = document.getElementById('notificationText');
@@ -3139,7 +3973,7 @@
       }, 4000);
     }
 
-    // VERIFICAR SESIÓN RECORDADA AL CARGAR LA PÁGINA
+    // ===== VERIFICAR SESIÓN RECORDADA =====
     function checkRememberedUser() {
       const rememberedUser = localStorage.getItem('rememberedUser');
       if (rememberedUser) {
@@ -3169,31 +4003,44 @@
       }
     }
 
-    // EVENT LISTENERS
+    // ===== EVENT LISTENERS AL CARGAR =====
     document.addEventListener('DOMContentLoaded', function() {
       // Verificar sesión recordada
       checkRememberedUser();
 
-      // Inicializar Google Sign-In cuando la API esté cargada
-      if (typeof google !== 'undefined') {
-        initializeGoogleSignIn();
-      } else {
-        // Si Google no está disponible, reintentar después de un tiempo
-        setTimeout(initializeGoogleSignIn, 1000);
+      // Inicializar Google Sign-In
+      initializeGoogleSignIn();
+
+      // Ajustar fecha mínima
+      const dateInput = document.getElementById('appointmentDate');
+      if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+        
+        // Para móviles, establecer fecha por defecto (mañana)
+        if (isMobile) {
+          const tomorrow = new Date();
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          dateInput.value = tomorrow.toISOString().split('T')[0];
+        }
       }
 
-      // Navegación del menú
-      const navLinks = document.querySelectorAll('.navigation a[href^="#"]');
-      navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          const targetId = link.getAttribute('href').substring(1);
-          scrollToSection(targetId);
+      // Toggle mostrar/ocultar contraseña en el login
+      const toggleLoginPwdBtn = document.getElementById('toggleLoginPassword');
+      const loginPwdInput = document.getElementById('loginPassword');
+      if (toggleLoginPwdBtn && loginPwdInput) {
+        toggleLoginPwdBtn.addEventListener('click', () => {
+          if (loginPwdInput.type === 'password') {
+            loginPwdInput.type = 'text';
+            toggleLoginPwdBtn.textContent = '🙈';
+            toggleLoginPwdBtn.setAttribute('aria-label', 'Ocultar contraseña');
+          } else {
+            loginPwdInput.type = 'password';
+            toggleLoginPwdBtn.textContent = '👁️';
+            toggleLoginPwdBtn.setAttribute('aria-label', 'Mostrar contraseña');
+          }
         });
-      });
-
-      // Botón Login del header
-      document.querySelector('.btnLogin-popup').addEventListener('click', openLoginModal);
+      }
 
       // Sistema de estrellas para reviews
       const stars = document.querySelectorAll('.star');
@@ -3210,13 +4057,98 @@
         });
       });
 
+      // Reseñas: obtener/guardar y mostrar
+      function getReviews() {
+        return JSON.parse(localStorage.getItem('gabys_reviews')) || [];
+      }
+
+      function saveReviews(reviews) {
+        localStorage.setItem('gabys_reviews', JSON.stringify(reviews));
+      }
+
+      function renderReviewCard(review) {
+        const avatar = review.name ? review.name.charAt(0).toUpperCase() : 'U';
+        const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+        const canDelete = userLoggedIn && currentUser && review.email && currentUser.email === review.email;
+        return `
+          <div class="review-card" data-review-id="${review.id}">
+            <div class="review-header">
+              <div class="review-avatar">${avatar}</div>
+              <div class="review-info">
+                <h4>${escapeHtml(review.name)}</h4>
+                <div class="review-stars">${stars}</div>
+              </div>
+              ${canDelete ? `<button class="delete-review" onclick="deleteReview(${review.id})" title="Eliminar reseña">🗑️</button>` : ''}
+            </div>
+            <p class="review-text">${escapeHtml(review.text)}</p>
+          </div>
+        `;
+      }
+
+      function loadReviews() {
+        const container = document.getElementById('dynamicReviews');
+        if (!container) return;
+        const reviews = getReviews();
+        if (reviews.length === 0) {
+          container.innerHTML = ''; return;
+        }
+        container.innerHTML = reviews.slice().reverse().map(r => renderReviewCard(r)).join('');
+      }
+
+      function escapeHtml(unsafe) {
+        return String(unsafe)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#039;');
+      }
+
       // Formulario de reviews
       document.getElementById('reviewForm').addEventListener('submit', (e) => {
         e.preventDefault();
-        showNotification('Thank you for your review! It will be published after being reviewed.');
+        const name = document.getElementById('reviewName').value.trim();
+        const text = document.getElementById('reviewText').value.trim();
+        const activeStar = Array.from(document.querySelectorAll('#starsRating .star.active')).pop();
+        const rating = activeStar ? parseInt(activeStar.getAttribute('data-rating')) : 5;
+
+        if (!userLoggedIn) {
+          showNotification('Debes iniciar sesión para enviar una reseña.', 'error');
+          openLoginModal();
+          return;
+        }
+
+        if (!name || !text) {
+          showNotification('Please provide your name and review text.', 'error');
+          return;
+        }
+
+        const reviews = getReviews();
+        reviews.push({ id: Date.now(), name, rating, text, date: new Date().toISOString(), email: currentUser ? currentUser.email : null, verified: !!(currentUser) });
+        saveReviews(reviews);
+        loadReviews();
+        showNotification('Gracias por tu reseña!');
         e.target.reset();
         stars.forEach(star => star.classList.remove('active'));
       });
+
+      // Cargar reseñas guardadas al iniciar
+      loadReviews();
+
+      // Eliminar reseña por id
+      window.deleteReview = function(reviewId) {
+        const reviews = getReviews();
+        const idx = reviews.findIndex(r => r.id === reviewId);
+        if (idx === -1) return;
+        if (!(userLoggedIn && currentUser && reviews[idx].email && currentUser.email === reviews[idx].email)) {
+          showNotification('No tienes permiso para eliminar esta reseña.', 'error');
+          return;
+        }
+        reviews.splice(idx, 1);
+        saveReviews(reviews);
+        loadReviews();
+        showNotification('Reseña eliminada');
+      };
 
       // Formulario de login
       document.getElementById('loginForm').addEventListener('submit', (e) => {
@@ -3236,7 +4168,7 @@
         resetPassword();
       });
 
-      // Formulario de reservas - ACTUALIZADO CON SOLO EMAIL
+      // Formulario de reservas
       document.getElementById('reservationForm').addEventListener('submit', function(e) {
         e.preventDefault();
         if (!userLoggedIn) {
@@ -3246,36 +4178,68 @@
           return;
         }
         
-        const serviceText = document.getElementById('serviceSelect').options[document.getElementById('serviceSelect').selectedIndex].text;
+        const serviceSelect = document.getElementById('serviceSelect');
+        const serviceText = serviceSelect.options[serviceSelect.selectedIndex].text;
+        const serviceValue = serviceSelect.value;
+        
+        let validationRequired = false;
+        let errorMessage = '';
+        
+        if (serviceValue === 'eyelash_extensions' && !selectedServiceOption) {
+          validationRequired = true;
+          errorMessage = 'Please select an eyelash extension type (Volume, Mega Volume, Classic, or Refill)';
+        } else if (serviceValue === 'eyebrows' && !selectedServiceOption) {
+          validationRequired = true;
+          errorMessage = 'Please select if this is a New Service or Touch-up';
+        } else if (serviceValue === 'lip_micropigmentation' && !selectedServiceOption) {
+          validationRequired = true;
+          errorMessage = 'Please select if this is a New Service or Touch-up';
+        }
+        
+        if (validationRequired) {
+          showNotification(errorMessage, 'error');
+          return;
+        }
+        
         const newAppointment = {
           id: Date.now(),
           service: serviceText,
           date: document.getElementById('appointmentDate').value,
           time: document.getElementById('appointmentTime').value,
           location: document.querySelector('.location-option.selected') ? 
-                   document.querySelector('.location-option.selected').getAttribute('data-location') : 'No especificado',
+                   document.querySelector('.location-option.selected').getAttribute('data-location') : 'In Studio',
           status: "pending",
           clientName: document.getElementById('clientName').value,
           clientEmail: document.getElementById('clientEmail').value,
           clientPhone: document.getElementById('clientPhone').value,
-          notes: document.getElementById('notes').value || 'No hay notas especificadas'
+          notes: document.getElementById('notes').value || 'No hay notas especificadas',
+          serviceType: selectedServiceOption || null
         };
         
         userAppointments.push(newAppointment);
         
-        // Guardar datos
         saveUserData(currentUser.email, {
           appointments: userAppointments,
           favorites: userFavorites
         });
         
-        // ENVIAR NOTIFICACIONES SOLO POR EMAIL
         sendAppointmentNotifications(newAppointment);
         
         showNotification('Appointment successfully booked! 📅 A confirmation email has been sent.');
         closeReservationModal();
         this.reset();
+        
+        selectedServiceOption = '';
+        document.querySelectorAll('.service-options-container').forEach(container => {
+          container.classList.remove('active');
+        });
+        document.querySelectorAll('.service-option').forEach(option => {
+          option.classList.remove('selected');
+        });
       });
+
+      // Botón Login del header
+      document.querySelector('.btnLogin-popup').addEventListener('click', openLoginModal);
 
       // Cerrar modales al hacer clic fuera
       window.addEventListener('click', (e) => {
@@ -3302,27 +4266,18 @@
         }
       });
 
-      // Fecha mínima como hoy
-      const dateInput = document.getElementById('appointmentDate');
-      if (dateInput) {
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.min = today;
+      // Cerrar menú hamburguesa al hacer clic fuera en móvil
+      if (isMobile) {
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.navigation') && !e.target.closest('.mobile-menu-btn')) {
+            mainNavigation.classList.remove('active');
+            if (mobileMenuBtn) {
+              mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+          }
+        });
       }
     });
-
-    // SIMULACIÓN DE ACEPTACIÓN DE CITA POR PARTE DE GABY
-    // En un sistema real, esto se haría desde el backend cuando Gaby haga clic en un enlace en el email
-    // Aquí lo simulamos con una función que se puede llamar desde la consola del navegador
-    window.simulateAppointmentAcceptance = function(appointmentId, userEmail) {
-      acceptAppointment(appointmentId, userEmail);
-      alert(`Cita ${appointmentId} aceptada para ${userEmail}`);
-    };
   </script>
 </body>
 </html>
-   
-
-
-
-
-
